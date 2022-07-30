@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 817748276}
   - component: {fileID: 817748278}
   - component: {fileID: 817748277}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wood Platform Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,8 +325,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1238890141
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -408,8 +408,8 @@ Tilemap:
       e12: 8.62e-43
       e13: 8.62e-43
       e20: 3.155812e+21
-      e21: 6.7e-44
-      e22: 5.4224874e-19
+      e21: 2.2e-44
+      e22: 5.4681643e-19
       e23: -2.592514e+23
       e30: 4.5905e-41
       e31: 0
@@ -419,7 +419,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   - m_RefCount: 0
-    m_Data: {r: 3.4301e-41, g: 3.4301e-41, b: 3.4301e-41, a: 3.4301e-41}
+    m_Data: {r: 3.4337e-41, g: 3.4337e-41, b: 3.4337e-41, a: 3.4337e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 1535037934}
   - component: {fileID: 1535037933}
   - component: {fileID: 1535037935}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,8 +516,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1238890141
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -542,7 +542,51 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
@@ -644,15 +688,15 @@ Tilemap:
     m_Data:
       e00: 1e-45
       e01: 0
-      e02: -8.085851e-39
-      e03: -8.085851e-39
+      e02: -8.08316e-39
+      e03: -8.08316e-39
       e10: 0
       e11: 0
       e12: 8.62e-43
       e13: 8.62e-43
       e20: 3.155812e+21
-      e21: 6.7e-44
-      e22: 2.0299436e-19
+      e21: 2.2e-44
+      e22: 5.45617e-19
       e23: 8.625635e+9
       e30: 4.5905e-41
       e31: 0
@@ -660,22 +704,22 @@ Tilemap:
       e33: 8.66e-43
   - m_RefCount: 0
     m_Data:
-      e00: 1e-45
+      e00: 0
       e01: 0
-      e02: -8.084775e-39
-      e03: -8.084775e-39
+      e02: 0
+      e03: 13206.922
       e10: 0
       e11: 0
-      e12: 8.62e-43
-      e13: 8.62e-43
-      e20: 3.155812e+21
-      e21: 6.7e-44
-      e22: 2.0381162e-19
-      e23: 8.625635e+9
-      e30: 4.5905e-41
+      e12: 0
+      e13: 2.75e-43
+      e20: 0
+      e21: 0
+      e22: 0
+      e23: 0
+      e30: 0
       e31: 0
-      e32: 8.63e-43
-      e33: 8.66e-43
+      e32: 0
+      e33: 0
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 3.4203e-41, g: 3.4203e-41, b: 3.4203e-41, a: 3.4203e-41}
@@ -730,7 +774,7 @@ GameObject:
   - component: {fileID: 1808261498}
   - component: {fileID: 1808261500}
   - component: {fileID: 1808261499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,8 +834,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1671138121
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
