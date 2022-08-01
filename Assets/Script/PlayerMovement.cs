@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Run();
+        Debug.Log(totoRigidbody.velocity.y);
+        if (totoRigidbody.velocity.y <= 0.5 && totoRigidbody.velocity.y >= -0.5)
+        {
+            totoAnimator.SetBool("isJumping", false);
+        }
     }
 
 
@@ -33,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Movement Part
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>(); 
+        moveInput = value.Get<Vector2>();
         
     }
 
@@ -77,12 +82,23 @@ public class PlayerMovement : MonoBehaviour
     // Jumping Part
     void OnJump(InputValue value)
     {
-        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
+        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) 
+        {
+            //totoAnimator.SetBool("isJumping", false);
+            return; 
+        }
+        
 
         if (value.isPressed)
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
+            
+           // if (totoRigidbody.velocity.y >= 1 && totoRigidbody.velocity.y <= -1)
+                totoAnimator.SetBool("isJumping", true);
+            
+            
         }
+        
     }
 
     
