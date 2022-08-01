@@ -27,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         Debug.Log(totoRigidbody.velocity.y);
-        if (totoRigidbody.velocity.y <= 0.5 && totoRigidbody.velocity.y >= -0.5)
-        {
-            totoAnimator.SetBool("isJumping", false);
-        }
+        //if (totoRigidbody.velocity.y <= 0.5 && totoRigidbody.velocity.y >= -0.5)
+        //{
+        //    totoAnimator.SetBool("isJumping", false);
+        //}
+
+        SetAnimation();
     }
 
 
@@ -94,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
             
            // if (totoRigidbody.velocity.y >= 1 && totoRigidbody.velocity.y <= -1)
-                totoAnimator.SetBool("isJumping", true);
+                //totoAnimator.SetBool("isJumping", true);
             
             
         }
@@ -103,7 +105,21 @@ public class PlayerMovement : MonoBehaviour
 
     
 
+    void SetAnimation()
+    {
+        if (totoRigidbody.velocity.y > 0.8)
+        {
+            totoAnimator.SetBool("isJumping", true);
+            totoAnimator.SetBool("isRunning", false);
+        }
 
+        if (totoRigidbody.velocity.y == 0)
+        {
+            totoAnimator.SetBool("isJumping", false);
+        }
+
+
+    }
 
 
 
