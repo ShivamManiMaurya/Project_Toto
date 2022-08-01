@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a297241595657b74eaa0d0aba23e569c
+guid: e3dc7d18177d1d546b49e47cae0dbb1b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_0
+      name: SpriteSheetJump_0
       rect:
         serializedVersion: 2
         x: 20
         y: 25
         width: 20
-        height: 20
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1516543c34bc9a246a6deb08257bb31f
-      internalID: 590193970
+      spriteID: 9558a52014e2d4245a03899a833c79aa
+      internalID: 1221752101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_1
+      name: SpriteSheetJump_1
       rect:
         serializedVersion: 2
         x: 83
@@ -163,17 +163,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9a6419f2b779f945b166feb798cc436
-      internalID: 1725968064
+      spriteID: 1750db35967e670458171bd6643ed269
+      internalID: -1270369269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_2
+      name: SpriteSheetJump_2
       rect:
         serializedVersion: 2
-        x: 147
+        x: 146
         y: 25
         width: 20
         height: 20
@@ -184,17 +184,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fc1ec777fbc54342b61abfece545520
-      internalID: -465481516
+      spriteID: d660623076a42324ca63ac1f016c8912
+      internalID: 828411106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_3
+      name: SpriteSheetJump_3
       rect:
         serializedVersion: 2
-        x: 212
+        x: 211
+        y: 25
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e06608fc583ef4e49a88557295e675f4
+      internalID: -210759681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetJump_4
+      rect:
+        serializedVersion: 2
+        x: 275
         y: 25
         width: 20
         height: 20
@@ -205,40 +226,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f29653406dd48e4b8f35b68ef5fa719
-      internalID: 513807776
+      spriteID: 0479bff665284a44e93d864c241c7896
+      internalID: 728174274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 276
-        y: 25
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80c8287a17d88ac42b448be088ac768e
-      internalID: 1065637123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_5
+      name: SpriteSheetJump_5
       rect:
         serializedVersion: 2
         x: 340
         y: 25
-        width: 20
+        width: 21
         height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -247,17 +247,59 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf7e625d17e98e446938ffb7e6290065
-      internalID: 2075168429
+      spriteID: e8027e0d080987c4ab3e6d34462df87e
+      internalID: 1607823312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_6
+      name: SpriteSheetJump_6
       rect:
         serializedVersion: 2
-        x: 403
+        x: 404
+        y: 25
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dbbca52238395d4c8c73068d8041301
+      internalID: -1759969544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetJump_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 25
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70eea31392e44d047b68b1e83edc136c
+      internalID: 2086984378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetJump_8
+      rect:
+        serializedVersion: 2
+        x: 532
         y: 25
         width: 20
         height: 20
@@ -268,56 +310,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4782c46737e1c1445aae6c855d8fbe8d
-      internalID: 1442312675
+      spriteID: 2add2d4743ca9124eb07ff9ed4afdddf
+      internalID: -1891279067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_7
-      rect:
-        serializedVersion: 2
-        x: 467
-        y: 25
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc544331990b3594b9e59f77a9bc9854
-      internalID: 868358088
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_8
-      rect:
-        serializedVersion: 2
-        x: 531
-        y: 25
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20214516d881bee4d870f198f2147591
-      internalID: 484338753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hobbit_Run_SpriteSheet_9
+      name: SpriteSheetJump_9
       rect:
         serializedVersion: 2
         x: 596
@@ -331,8 +331,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53f7142848a6d2c49a6adcff9cd9e209
-      internalID: -1021066255
+      spriteID: bf6672915dfdca14898e92d8c0380f1c
+      internalID: -1662390210
       vertices: []
       indices: 
       edges: []
@@ -348,16 +348,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hobbit_Run_SpriteSheet_6: 1442312675
-      Hobbit_Run_SpriteSheet_4: 1065637123
-      Hobbit_Run_SpriteSheet_0: 590193970
-      Hobbit_Run_SpriteSheet_7: 868358088
-      Hobbit_Run_SpriteSheet_9: -1021066255
-      Hobbit_Run_SpriteSheet_8: 484338753
-      Hobbit_Run_SpriteSheet_5: 2075168429
-      Hobbit_Run_SpriteSheet_3: 513807776
-      Hobbit_Run_SpriteSheet_2: -465481516
-      Hobbit_Run_SpriteSheet_1: 1725968064
+      SpriteSheetJump_1: -1270369269
+      SpriteSheetJump_7: 2086984378
+      SpriteSheetJump_2: 828411106
+      SpriteSheetJump_3: -210759681
+      SpriteSheetJump_8: -1891279067
+      SpriteSheetJump_0: 1221752101
+      SpriteSheetJump_6: -1759969544
+      SpriteSheetJump_4: 728174274
+      SpriteSheetJump_9: -1662390210
+      SpriteSheetJump_5: 1607823312
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

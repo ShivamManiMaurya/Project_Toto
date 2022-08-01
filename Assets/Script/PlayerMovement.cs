@@ -6,18 +6,21 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float totoSpeed = 5;
+    [SerializeField] float totoJumpSpeed = 5;
 
     bool facingRight = true;
 
     Vector2 moveInput;
     Rigidbody2D totoRigidbody;
     Animator totoAnimator;
+    CapsuleCollider2D totoCapsuleCollider;
     
 
     void Start()
     {
         totoRigidbody = GetComponent<Rigidbody2D>();
         totoAnimator = GetComponent<Animator>();
+        totoCapsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     void Update()
@@ -25,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
         Run();
     }
 
+
+
+    // Movement Part
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>(); 
@@ -46,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
         //    totoRigidbody.transform.localScale = new Vector2(Mathf.Sign(totoRigidbody.velocity.x), 1f);
         //}
 
-
         if (totoRigidbody.velocity.x > 0 && !facingRight)
         {
             FlipPlayer();
@@ -66,6 +71,26 @@ public class PlayerMovement : MonoBehaviour
 
         facingRight = !facingRight;
     }
+
+
+
+    // Jumping Part
+    void OnJump(InputValue value)
+    {
+        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
+
+        if (value.isPressed)
+        {
+            totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
+        }
+    }
+
+    
+
+
+
+
+
 
 
 }
