@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float totoSpeed = 5;
     [SerializeField] float totoJumpSpeed = 5;
+    [SerializeField] float totoClimbSpeed = 5;
 
     bool facingRight = true;
 
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D totoRigidbody;
     Animator totoAnimator;
     CapsuleCollider2D totoCapsuleCollider;
+    float gravityValueAtStart;
     
 
     void Start()
@@ -21,18 +23,14 @@ public class PlayerMovement : MonoBehaviour
         totoRigidbody = GetComponent<Rigidbody2D>();
         totoAnimator = GetComponent<Animator>();
         totoCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        gravityValueAtStart = totoRigidbody.gravityScale;
     }
 
     void Update()
     {
         Run();
-        Debug.Log(totoRigidbody.velocity.y);
-        //if (totoRigidbody.velocity.y <= 0.5 && totoRigidbody.velocity.y >= -0.5)
-        //{
-        //    totoAnimator.SetBool("isJumping", false);
-        //}
-
         SetAnimation();
+        ClimbLadder();
     }
 
 
@@ -84,27 +82,37 @@ public class PlayerMovement : MonoBehaviour
     // Jumping Part
     void OnJump(InputValue value)
     {
-        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) 
-        {
-            //totoAnimator.SetBool("isJumping", false);
-            return; 
-        }
-        
-
+        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
+   
         if (value.isPressed)
         {
-            totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
-            
-           // if (totoRigidbody.velocity.y >= 1 && totoRigidbody.velocity.y <= -1)
-                //totoAnimator.SetBool("isJumping", true);
-            
-            
+            totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
         }
-        
     }
 
-    
 
+    
+    // Climbing Part
+    void ClimbLadder()
+    {
+        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            totoRigidbody.gravityScale = gravityValueAtStart;
+            return;
+        }
+
+        Vector2 climbVelocity = new Vector2(totoRigidbody.velocity.x, moveInput.y * totoClimbSpeed);
+        totoRigidbody.velocity = climbVelocity;
+
+        totoRigidbody.gravityScale = 0;
+
+        Debug.Log(totoRigidbody.velocity);
+
+    }
+
+
+
+    // Setting Animaitons
     void SetAnimation()
     {
         if (totoRigidbody.velocity.y > 0.8)
@@ -118,6 +126,10 @@ public class PlayerMovement : MonoBehaviour
             totoAnimator.SetBool("isJumping", false);
         }
 
+        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            
+        }
 
     }
 
