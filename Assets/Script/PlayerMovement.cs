@@ -38,17 +38,13 @@ public class PlayerMovement : MonoBehaviour
     // Movement Part
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
-        
+        moveInput = value.Get<Vector2>();   
     }
 
     void Run()
     {
         Vector2 playerVelocity = new Vector2(totoSpeed * moveInput.x, totoRigidbody.velocity.y);
         totoRigidbody.velocity = playerVelocity;
-
-        bool val = Mathf.Abs(totoRigidbody.velocity.x) > Mathf.Epsilon;
-        totoAnimator.SetBool("isRunning", val);
 
         // This method also works, but it continuously changes the scale.
         //if (Mathf.Abs(totoRigidbody.velocity.x) > 0)
@@ -72,8 +68,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 currentScale = totoRigidbody.transform.localScale;
         currentScale.x *= -1;
         totoRigidbody.transform.localScale = currentScale;
-        Debug.Log(totoRigidbody.transform.localScale);
-
+ 
         facingRight = !facingRight;
     }
 
@@ -112,9 +107,14 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    // Setting Animaitons
+    // Setting Animations
     void SetAnimation()
     {
+        // Running Animation
+        bool val = Mathf.Abs(totoRigidbody.velocity.x) > Mathf.Epsilon;
+        totoAnimator.SetBool("isRunning", val);
+
+        // Jumping Animation
         if (Mathf.Abs(totoRigidbody.velocity.y) > 0.8)
         {
             totoAnimator.SetBool("isJumping", true);
@@ -126,6 +126,12 @@ public class PlayerMovement : MonoBehaviour
             totoAnimator.SetBool("isJumping", false);
         }
 
+        if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
+        {
+            totoAnimator.SetBool("isJumping", false);
+        }
+
+        // Climbing Animation
         if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && Mathf.Abs(totoRigidbody.velocity.y) > 0.8f)
         {
             totoAnimator.SetBool("isClimbing", true);
