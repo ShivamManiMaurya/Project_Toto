@@ -126,9 +126,14 @@ public class PlayerMovement : MonoBehaviour
             totoAnimator.SetBool("isJumping", false);
         }
 
-        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && totoRigidbody.velocity.y > 0.8f)
         {
-            
+            totoAnimator.SetBool("isClimbing", true);
+            totoAnimator.SetBool("isJumping", false);
+        }
+        else if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
+        {
+            totoAnimator.SetBool("isClimbing", false);
         }
 
     }
