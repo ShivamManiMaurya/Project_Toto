@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
     // Setting Animaitons
     void SetAnimation()
     {
-        if (totoRigidbody.velocity.y > 0.8)
+        if (Mathf.Abs(totoRigidbody.velocity.y) > 0.8)
         {
             totoAnimator.SetBool("isJumping", true);
             totoAnimator.SetBool("isRunning", false);
@@ -126,15 +126,22 @@ public class PlayerMovement : MonoBehaviour
             totoAnimator.SetBool("isJumping", false);
         }
 
-        if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && totoRigidbody.velocity.y > 0.8f)
+        if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && Mathf.Abs(totoRigidbody.velocity.y) > 0.8f)
         {
             totoAnimator.SetBool("isClimbing", true);
             totoAnimator.SetBool("isJumping", false);
+            if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
+            {
+                totoAnimator.SetBool("isClimbing", false);
+            }
         }
         else if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
         {
             totoAnimator.SetBool("isClimbing", false);
         }
+
+        
+      
 
     }
 
