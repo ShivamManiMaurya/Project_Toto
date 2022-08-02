@@ -10,7 +10,7 @@ public class SlimeEnemyMovement : MonoBehaviour
     float slimeScale;
     bool mustTurn;
 
-    CapsuleCollider2D slimeCapsuleCollider;
+    BoxCollider2D slimeBoxCollider;
     Transform slimeTransform;
     Rigidbody2D slimeRigidbody;
     Transform groundIsPresentOrNot;
@@ -20,7 +20,7 @@ public class SlimeEnemyMovement : MonoBehaviour
 
     void Start()
     {
-        slimeCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        slimeBoxCollider = GetComponent<BoxCollider2D>();
         slimeTransform = GetComponent<Transform>();
         slimeScale = slimeTransform.localScale.x;
         slimeRigidbody = GetComponent<Rigidbody2D>();
@@ -59,7 +59,14 @@ public class SlimeEnemyMovement : MonoBehaviour
         slimeTransform.localScale = new Vector2(slimeScale, 1f);
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (slimeBoxCollider.IsTouchingLayers(platfromLayer))
+        {
+            Flip();
+            
+        }
+    }
 
 
 }
