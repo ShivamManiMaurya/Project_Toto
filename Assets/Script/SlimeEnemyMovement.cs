@@ -6,6 +6,7 @@ public class SlimeEnemyMovement : MonoBehaviour
 {
     [SerializeField] float slimeSpeed = 5f;
     [SerializeField] bool mustPetrol;
+    [SerializeField] LayerMask platfromLayer;
 
     float slimeScale;
     bool mustTurn;
@@ -14,7 +15,7 @@ public class SlimeEnemyMovement : MonoBehaviour
     Transform slimeTransform;
     Rigidbody2D slimeRigidbody;
     Transform groundIsPresentOrNot;
-    public LayerMask platfromLayer;
+    
     
     
 

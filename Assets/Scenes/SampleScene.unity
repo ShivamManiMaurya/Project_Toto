@@ -9812,10 +9812,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1989184913, guid: 0e39d4a0dc98181449ba449d14b1daee, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1687935959288447114, guid: 0e39d4a0dc98181449ba449d14b1daee, type: 3}
       propertyPath: m_Name
       value: Toto (Player)

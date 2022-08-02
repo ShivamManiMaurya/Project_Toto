@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float totoSpeed = 5;
     [SerializeField] float totoJumpSpeed = 5;
     [SerializeField] float totoClimbSpeed = 5;
+    [SerializeField] LayerMask platformLayer;
 
     bool facingRight = true;
 
@@ -79,10 +80,41 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
    
-        if (value.isPressed)
+        if (value.isPressed && IsGrounded())
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
         }
+    }
+
+    private bool IsGrounded()
+    {
+        // code from codeMonkey for boxRayCast to check player is grounded or not
+        float hightOfBoxCast = 1f;
+        RaycastHit2D boxRayCastHit = Physics2D.BoxCast(totoCapsuleCollider.bounds.center, totoCapsuleCollider.bounds.size, 
+                                               0f, Vector2.down, hightOfBoxCast, platformLayer);
+
+        //Color rayColor;
+        //if (boxRayCastHit.collider != null)
+        //{
+        //    rayColor = Color.green;
+        //}
+        //else
+        //{
+        //    rayColor = Color.red;
+        //}
+        //Debug.DrawRay(totoCapsuleCollider.bounds.center + new Vector3(totoCapsuleCollider.bounds.extents.x, 0),
+        //    Vector2.down * (totoCapsuleCollider.bounds.extents.y + hightOfBoxCast), rayColor);
+        //Debug.DrawRay(totoCapsuleCollider.bounds.center - new Vector3(totoCapsuleCollider.bounds.extents.x, 0),
+        //    Vector2.down * (totoCapsuleCollider.bounds.extents.y + hightOfBoxCast), rayColor);
+        //Debug.DrawRay(totoCapsuleCollider.bounds.center - new Vector3(totoCapsuleCollider.bounds.extents.x, 
+        //    totoCapsuleCollider.bounds.extents.y + hightOfBoxCast), Vector2.right * (totoCapsuleCollider.bounds.extents.x), rayColor);
+
+
+
+
+
+
+        return boxRayCastHit.collider != null;
     }
 
 
@@ -100,9 +132,6 @@ public class PlayerMovement : MonoBehaviour
         totoRigidbody.velocity = climbVelocity;
 
         totoRigidbody.gravityScale = 0;
-
-        Debug.Log(totoRigidbody.velocity);
-
     }
 
 
