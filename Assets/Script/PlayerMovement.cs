@@ -11,18 +11,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask platformLayer;
 
     bool facingRight = true;
+    float gravityValueAtStart;
 
     Vector2 moveInput;
-    public Rigidbody2D totoRigidbody;
+    Rigidbody2D totoRigidbody;
     Animator totoAnimator;
     CapsuleCollider2D totoBodyCollider;
-    float gravityValueAtStart;
     BoxCollider2D totoFeetCollider;
-
-
-    // some new
-    //private HeartsHealthSystem heartsHealthSystem;
-    HeartsHealthVisual hv;
+    HeartsHealthVisual heartsHealthVisual;
 
 
     void Start()
@@ -32,17 +28,14 @@ public class PlayerMovement : MonoBehaviour
         totoBodyCollider = GetComponent<CapsuleCollider2D>();
         totoFeetCollider = GetComponent<BoxCollider2D>();
         gravityValueAtStart = totoRigidbody.gravityScale;
-
-        // some new
-        //HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(4);
-        hv = FindObjectOfType<HeartsHealthVisual>();
-        //hv.SetHeartHealthSystem(heartsHealthSystem);
+        heartsHealthVisual = FindObjectOfType<HeartsHealthVisual>();
 
     }
 
     void Update()
     {
-        if (!hv.isDead)
+        // If Player is Dead then these functions don't work
+        if (!heartsHealthVisual.isDead)
         {
             Run();
             SetAnimation();
@@ -50,21 +43,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("SlimeEnemy"))
-    //    {
-    //        heartsHealthSystem.Damage(1);
-    //    }
-    //}
-
+    // Player got Damage
     public void DamageKnockBack(int damageAmount)
     {
         //transform.position += knockbackDir * knockbackDistance;
         HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
     }
 
+    // Player got Healed
     public void Heal(int healAmount)
     {
         HeartsHealthVisual.heartsHealthSystemStatic.Heal(healAmount);
@@ -81,13 +67,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 playerVelocity = new Vector2(totoSpeed * moveInput.x, totoRigidbody.velocity.y);
         totoRigidbody.velocity = playerVelocity;
-
-        // This method also works, but it continuously changes the scale.
-        //if (Mathf.Abs(totoRigidbody.velocity.x) > 0)
-        //{
-        //    Debug.Log(totoRigidbody.transform.localScale);
-        //    totoRigidbody.transform.localScale = new Vector2(Mathf.Sign(totoRigidbody.velocity.x), 1f);
-        //}
 
         if (totoRigidbody.velocity.x > 0 && !facingRight)
         {
@@ -115,39 +94,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
    
-        if (value.isPressed && IsGrounded() && !hv.isDead)
+        if (value.isPressed && IsGrounded() && !heartsHealthVisual.isDead)
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
         }
     }
 
+    // This method is used from the tutorial of codeMonkey, for boxRayCast to check player is grounded or not
     private bool IsGrounded()
     {
-        // code from codeMonkey for boxRayCast to check player is grounded or not
         float hightOfBoxCast = 1f;
-        RaycastHit2D boxRayCastHit = Physics2D.BoxCast(totoFeetCollider.bounds.center, totoFeetCollider.bounds.size, 
-                                               0f, Vector2.down, hightOfBoxCast, platformLayer);
-
-        //Color rayColor;
-        //if (boxRayCastHit.collider != null)
-        //{
-        //    rayColor = Color.green;
-        //}
-        //else
-        //{
-        //    rayColor = Color.red;
-        //}
-        //Debug.DrawRay(totoCapsuleCollider.bounds.center + new Vector3(totoCapsuleCollider.bounds.extents.x, 0),
-        //    Vector2.down * (totoCapsuleCollider.bounds.extents.y + hightOfBoxCast), rayColor);
-        //Debug.DrawRay(totoCapsuleCollider.bounds.center - new Vector3(totoCapsuleCollider.bounds.extents.x, 0),
-        //    Vector2.down * (totoCapsuleCollider.bounds.extents.y + hightOfBoxCast), rayColor);
-        //Debug.DrawRay(totoCapsuleCollider.bounds.center - new Vector3(totoCapsuleCollider.bounds.extents.x, 
-        //    totoCapsuleCollider.bounds.extents.y + hightOfBoxCast), Vector2.right * (totoCapsuleCollider.bounds.extents.x), rayColor);
-
-
-
-
-
+        RaycastHit2D boxRayCastHit = Physics2D.BoxCast(totoFeetCollider.bounds.center, totoFeetCollider.bounds.size, 0f,
+                                                        Vector2.down, hightOfBoxCast, platformLayer);
 
         return boxRayCastHit.collider != null;
     }
@@ -201,14 +159,21 @@ public class PlayerMovement : MonoBehaviour
         {
             totoAnimator.SetBool("isClimbing", true);
             totoAnimator.SetBool("isJumping", false);
-            //if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
-            //{
-            //    totoAnimator.SetBool("isClimbing", false);
-            //}
+
+            Debug.Log("isClimbing = true hai");
+
+            //if ()
+            //totoAnimator.speed = 0.0f;
         }
         else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
         {
             totoAnimator.SetBool("isClimbing", false);
+            Debug.Log("isClimbing = false hai");
+        }
+        else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            totoAnimator.speed = 0.0f;
+            Debug.Log("isme hai sbb nautanki");
         }
 
         

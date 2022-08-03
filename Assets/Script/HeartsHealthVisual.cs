@@ -19,9 +19,8 @@ public class HeartsHealthVisual : MonoBehaviour
     private HeartsHealthSystem heartsHealthSystem;
 
     // my change
-    //public bool FullHealth;
     public bool isDead = false;
-    // *******
+    // *********
 
     private void Awake()
     {
@@ -33,12 +32,6 @@ public class HeartsHealthVisual : MonoBehaviour
     {
         HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(4);
         SetHeartHealthSystem(heartsHealthSystem);
-
-        // **************************************************************** \\
-        // Yaha se health kam ya jada ka logic lagega                       \\
-        // **************************************************************** \\
-
-        
     }
 
   
@@ -49,25 +42,12 @@ public class HeartsHealthVisual : MonoBehaviour
 
         List<HeartsHealthSystem.Heart> heartList = heartsHealthSystem.GetHeartList();
 
-        // My change for checking full health or not
-        //if (heartList.Count == 4)
-        //{
-        //    FullHealth = true;
-        //}
-        //else
-        //{
-        //    FullHealth = false;
-        //}
-        // ********************
-
         Vector2 heartAnchoredPosition = new Vector2(0, 0);
         for (int i = 0; i < heartList.Count; i++)
         {
             HeartsHealthSystem.Heart heart = heartList[i];
-
             CreateHeartImage(heartAnchoredPosition).SetHeartFragments(heart.GetFragmentAmount());
             heartAnchoredPosition += new Vector2(30, 0);
-
         }
 
         heartsHealthSystem.OnDamaged += HeartsHealthSystem_OnDamaged;
@@ -85,7 +65,6 @@ public class HeartsHealthVisual : MonoBehaviour
     {
         // Hearts health system was healed
         RefreshAllHearts();
-        //isHealing = true;
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e)
@@ -112,6 +91,7 @@ public class HeartsHealthVisual : MonoBehaviour
 
         // set as child of this transform
         heartGameObject.transform.SetParent(transform);
+
         //heartGameObject.transform.parent = transform;
         heartGameObject.transform.localPosition = Vector3.zero;
 
@@ -127,11 +107,8 @@ public class HeartsHealthVisual : MonoBehaviour
         HeartImage heartImage = new HeartImage(this, heartImageUI);
         heartImageList.Add(heartImage);
 
-
         return heartImage;
-
     }
-
 
     // Represent a single heart
     public class HeartImage
@@ -160,11 +137,6 @@ public class HeartsHealthVisual : MonoBehaviour
             }
 
         }
-
-        //public int GetFragmentAmount()
-        //{
-        //    return fragments;
-        //}
 
     }
 }

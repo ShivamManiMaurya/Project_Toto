@@ -24,8 +24,6 @@ public class HeartsHealthSystem
             Heart heart = new Heart(4);
             heartList.Add(heart);
         }
-
-        //heartList[heartList.Count - 1].SetFragments(0);
     }
 
     public List<Heart> GetHeartList()
@@ -39,6 +37,7 @@ public class HeartsHealthSystem
         for (int i = heartList.Count - 1; i >= 0; i--)
         {
             Heart heart = heartList[i];
+
             // Test if this heart can absorb damageAmount
             if (damageAmount > heart.GetFragmentAmount())
             {
@@ -62,7 +61,6 @@ public class HeartsHealthSystem
         }
 
     }
-
 
     public void Heal(int healAmount)
     {
@@ -91,7 +89,6 @@ public class HeartsHealthSystem
     {
         return heartList[0].GetFragmentAmount() == 0;
     }
-
 
     // Represent a single heart
     public class Heart

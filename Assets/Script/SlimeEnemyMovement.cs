@@ -17,8 +17,6 @@ public class SlimeEnemyMovement : MonoBehaviour
     Rigidbody2D slimeRigidbody;
     Transform groundIsPresentOrNot;
     
-    
-    
 
     void Start()
     {
@@ -29,11 +27,7 @@ public class SlimeEnemyMovement : MonoBehaviour
         groundIsPresentOrNot = transform.Find("GroundIsPresentOrNot");
 
         mustPetrol = true;
-        
     }
-
-    
-
 
 
     void Update()
@@ -49,6 +43,7 @@ public class SlimeEnemyMovement : MonoBehaviour
             mustTurn = !Physics2D.OverlapCircle(groundIsPresentOrNot.position, 0.1f, platfromLayer); 
     }
 
+    // petrolling the area untill ground is present
     void Patrol()
     {
         if (mustTurn )
@@ -67,20 +62,19 @@ public class SlimeEnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        // The damage taken by the player
         PlayerMovement player = collider.GetComponent<PlayerMovement>();
         if (player != null)
         {
             // We hit the player
-            //Vector2 knockbackDir = (player.totoRigidbody.position - transform.position).normalized;
             player.DamageKnockBack(damageAmount);
             Debug.Log("hit");
         }
 
-
+        // Fliping the enemey when they triggered with the trigger collider
         if (slimeBoxCollider.IsTouchingLayers(platfromLayer))
         {
             Flip();
-            
         }
     }
 
