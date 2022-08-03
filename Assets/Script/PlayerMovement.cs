@@ -15,15 +15,17 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D totoRigidbody;
     Animator totoAnimator;
-    CapsuleCollider2D totoCapsuleCollider;
+    CapsuleCollider2D totoBodyCollider;
     float gravityValueAtStart;
+    BoxCollider2D totoFeetCollider;
     
 
     void Start()
     {
         totoRigidbody = GetComponent<Rigidbody2D>();
         totoAnimator = GetComponent<Animator>();
-        totoCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        totoBodyCollider = GetComponent<CapsuleCollider2D>();
+        totoFeetCollider = GetComponent<BoxCollider2D>();
         gravityValueAtStart = totoRigidbody.gravityScale;
     }
 
@@ -78,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     // Jumping Part
     void OnJump(InputValue value)
     {
-        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
+        if (!totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
    
         if (value.isPressed && IsGrounded())
         {
@@ -90,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // code from codeMonkey for boxRayCast to check player is grounded or not
         float hightOfBoxCast = 1f;
-        RaycastHit2D boxRayCastHit = Physics2D.BoxCast(totoCapsuleCollider.bounds.center, totoCapsuleCollider.bounds.size, 
+        RaycastHit2D boxRayCastHit = Physics2D.BoxCast(totoFeetCollider.bounds.center, totoFeetCollider.bounds.size, 
                                                0f, Vector2.down, hightOfBoxCast, platformLayer);
 
         //Color rayColor;
@@ -122,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
     // Climbing Part
     void ClimbLadder()
     {
-        if (!totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (!totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             totoRigidbody.gravityScale = gravityValueAtStart;
             return;
@@ -155,22 +157,23 @@ public class PlayerMovement : MonoBehaviour
             totoAnimator.SetBool("isJumping", false);
         }
 
-        if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
+        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
         {
             totoAnimator.SetBool("isJumping", false);
         }
 
         // Climbing Animation
-        if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && Mathf.Abs(totoRigidbody.velocity.y) > 0.8f)
+        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && Mathf.Abs(totoRigidbody.velocity.y) > 0.8f
+            && !totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
         {
             totoAnimator.SetBool("isClimbing", true);
             totoAnimator.SetBool("isJumping", false);
-            if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
-            {
-                totoAnimator.SetBool("isClimbing", false);
-            }
+            //if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
+            //{
+            //    totoAnimator.SetBool("isClimbing", false);
+            //}
         }
-        else if (totoCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
+        else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
         {
             totoAnimator.SetBool("isClimbing", false);
         }
