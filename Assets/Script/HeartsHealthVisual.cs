@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class HeartsHealthVisual : MonoBehaviour
 {
+    public static HeartsHealthSystem heartsHealthSystemStatic;
+
     [SerializeField] private Sprite heart0Sprite;
     [SerializeField] private Sprite heart1Sprite;
     [SerializeField] private Sprite heart2Sprite;
@@ -12,21 +16,103 @@ public class HeartsHealthVisual : MonoBehaviour
     [SerializeField] private Sprite heart4Sprite;
 
     private List<HeartImage> heartImageList;
+    private HeartsHealthSystem heartsHealthSystem;
+
+    // my change
+    //public bool FullHealth;
+    public bool isDead = false;
+    // *******
+
+    private void Awake()
+    {
+        heartImageList = new List<HeartImage>();
+    }
+
 
     private void Start()
     {
-        MakeAndReturnHeartImage(new Vector2(0, 0));
-        MakeAndReturnHeartImage(new Vector2(30, 0));
-        MakeAndReturnHeartImage(new Vector2(60, 0));
+        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(4);
+        SetHeartHealthSystem(heartsHealthSystem);
+
+        // **************************************************************** \\
+        // Yaha se health kam ya jada ka logic lagega                       \\
+        // **************************************************************** \\
+
+        
     }
 
-    private HeartImage MakeAndReturnHeartImage(Vector2 anchoredPosition)
+  
+    public void SetHeartHealthSystem(HeartsHealthSystem heartsHealthSystem)
+    {
+        this.heartsHealthSystem = heartsHealthSystem;
+        heartsHealthSystemStatic = heartsHealthSystem;
+
+        List<HeartsHealthSystem.Heart> heartList = heartsHealthSystem.GetHeartList();
+
+        // My change for checking full health or not
+        //if (heartList.Count == 4)
+        //{
+        //    FullHealth = true;
+        //}
+        //else
+        //{
+        //    FullHealth = false;
+        //}
+        // ********************
+
+        Vector2 heartAnchoredPosition = new Vector2(0, 0);
+        for (int i = 0; i < heartList.Count; i++)
+        {
+            HeartsHealthSystem.Heart heart = heartList[i];
+
+            CreateHeartImage(heartAnchoredPosition).SetHeartFragments(heart.GetFragmentAmount());
+            heartAnchoredPosition += new Vector2(30, 0);
+
+        }
+
+        heartsHealthSystem.OnDamaged += HeartsHealthSystem_OnDamaged;
+        heartsHealthSystem.OnHealed += HeartsHealthSystem_OnHealed;
+        heartsHealthSystem.OnDead += HeartsHealthSystem_OnDead;
+    }
+
+    private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e)
+    {
+        Debug.Log("Dead!");
+        isDead = true;
+    }
+
+    private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e)
+    {
+        // Hearts health system was healed
+        RefreshAllHearts();
+        //isHealing = true;
+    }
+
+    private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e)
+    {
+        // Hearts health system was damaged
+        RefreshAllHearts();
+    }
+
+    private void RefreshAllHearts()
+    {
+        List<HeartsHealthSystem.Heart> heartList = heartsHealthSystem.GetHeartList();
+        for (int i = 0; i < heartImageList.Count; i++)
+        {
+            HeartImage heartImage = heartImageList[i];
+            HeartsHealthSystem.Heart heart = heartList[i];
+            heartImage.SetHeartFragments(heart.GetFragmentAmount());
+        }
+    }
+
+    private HeartImage CreateHeartImage(Vector2 anchoredPosition)
     {
         // make gameobject
         GameObject heartGameObject = new GameObject("Heart", typeof(Image));
 
         // set as child of this transform
-        heartGameObject.transform.parent = transform;
+        heartGameObject.transform.SetParent(transform);
+        //heartGameObject.transform.parent = transform;
         heartGameObject.transform.localPosition = Vector3.zero;
 
         // Locate and Size heart
@@ -35,10 +121,10 @@ public class HeartsHealthVisual : MonoBehaviour
 
         // set heart sprite
         Image heartImageUI = heartGameObject.GetComponent<Image>();
-        heartImageUI.sprite = heart0Sprite;
+        heartImageUI.sprite = heart4Sprite;
 
         // HeartImage class Obejct is made so Constructor with one variable is called
-        HeartImage heartImage = new HeartImage(heartImageUI);
+        HeartImage heartImage = new HeartImage(this, heartImageUI);
         heartImageList.Add(heartImage);
 
 
@@ -50,13 +136,35 @@ public class HeartsHealthVisual : MonoBehaviour
     // Represent a single heart
     public class HeartImage
     {
+        private int fragments;
         private Image heartImage;
+        private HeartsHealthVisual heartsHealthVisual;
 
         // Constructor is made
-        public HeartImage(Image heartImage)
+        public HeartImage(HeartsHealthVisual heartsHealthVisual, Image heartImage)
         {
+            this.heartsHealthVisual = heartsHealthVisual;
             this.heartImage = heartImage;
         }
+
+        public void SetHeartFragments(int fragments)
+        {
+            this.fragments = fragments;
+            switch (fragments)
+            {
+                case 0: heartImage.sprite = heartsHealthVisual.heart0Sprite; break;
+                case 1: heartImage.sprite = heartsHealthVisual.heart1Sprite; break;
+                case 2: heartImage.sprite = heartsHealthVisual.heart2Sprite; break;
+                case 3: heartImage.sprite = heartsHealthVisual.heart3Sprite; break;
+                case 4: heartImage.sprite = heartsHealthVisual.heart4Sprite; break;
+            }
+
+        }
+
+        //public int GetFragmentAmount()
+        //{
+        //    return fragments;
+        //}
 
     }
 }

@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 3431041369584447480}
   m_Layer: 10
   m_Name: Slime (Enemy)
-  m_TagString: Untagged
+  m_TagString: SlimeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd05aed6ed28e3344a081ff0dd76e3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   slimeSpeed: 100
   mustPetrol: 0
   platfromLayer:
@@ -208,7 +209,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.32184005}
+  m_Offset: {x: -0.003644377, y: -0.32184005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -219,5 +220,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.96153843, y: 0.0474205}
+  m_Size: {x: 0.7428766, y: 0.0474205}
   m_EdgeRadius: 0

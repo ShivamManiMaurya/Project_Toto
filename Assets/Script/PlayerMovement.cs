@@ -13,12 +13,17 @@ public class PlayerMovement : MonoBehaviour
     bool facingRight = true;
 
     Vector2 moveInput;
-    Rigidbody2D totoRigidbody;
+    public Rigidbody2D totoRigidbody;
     Animator totoAnimator;
     CapsuleCollider2D totoBodyCollider;
     float gravityValueAtStart;
     BoxCollider2D totoFeetCollider;
-    
+
+
+    // some new
+    //private HeartsHealthSystem heartsHealthSystem;
+    HeartsHealthVisual hv;
+
 
     void Start()
     {
@@ -27,15 +32,43 @@ public class PlayerMovement : MonoBehaviour
         totoBodyCollider = GetComponent<CapsuleCollider2D>();
         totoFeetCollider = GetComponent<BoxCollider2D>();
         gravityValueAtStart = totoRigidbody.gravityScale;
+
+        // some new
+        //HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(4);
+        hv = FindObjectOfType<HeartsHealthVisual>();
+        //hv.SetHeartHealthSystem(heartsHealthSystem);
+
     }
 
     void Update()
     {
-        Run();
-        SetAnimation();
-        ClimbLadder();
+        if (!hv.isDead)
+        {
+            Run();
+            SetAnimation();
+            ClimbLadder();
+        }
     }
 
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("SlimeEnemy"))
+    //    {
+    //        heartsHealthSystem.Damage(1);
+    //    }
+    //}
+
+    public void DamageKnockBack(int damageAmount)
+    {
+        //transform.position += knockbackDir * knockbackDistance;
+        HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
+    }
+
+    public void Heal(int healAmount)
+    {
+        HeartsHealthVisual.heartsHealthSystemStatic.Heal(healAmount);
+    }
 
 
     // Movement Part
@@ -82,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
    
-        if (value.isPressed && IsGrounded())
+        if (value.isPressed && IsGrounded() && !hv.isDead)
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
         }

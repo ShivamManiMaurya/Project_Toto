@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlimeEnemyMovement : MonoBehaviour
 {
+    [SerializeField] int damageAmount = 1;
     [SerializeField] float slimeSpeed = 5f;
     [SerializeField] bool mustPetrol;
     [SerializeField] LayerMask platfromLayer;
@@ -28,8 +29,12 @@ public class SlimeEnemyMovement : MonoBehaviour
         groundIsPresentOrNot = transform.Find("GroundIsPresentOrNot");
 
         mustPetrol = true;
-
+        
     }
+
+    
+
+
 
     void Update()
     {
@@ -60,8 +65,18 @@ public class SlimeEnemyMovement : MonoBehaviour
         slimeTransform.localScale = new Vector2(slimeScale, 1f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
+        PlayerMovement player = collider.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            // We hit the player
+            //Vector2 knockbackDir = (player.totoRigidbody.position - transform.position).normalized;
+            player.DamageKnockBack(damageAmount);
+            Debug.Log("hit");
+        }
+
+
         if (slimeBoxCollider.IsTouchingLayers(platfromLayer))
         {
             Flip();
