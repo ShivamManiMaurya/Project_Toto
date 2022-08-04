@@ -43,8 +43,7 @@ public class PlayerMovement : MonoBehaviour
             Run();
             ClimbLadder();
         }
-
-        SetAnimation();
+        
     }
 
     // Player got Damage
@@ -150,54 +149,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (heartsHealthVisual.isDead) { return; }
 
+        if (value.isPressed)
+        {
+            Invoke("InstantiateProjectile", 0.5f);
+            //InstantiateProjectile();
+            totoAnimator.SetTrigger("Attack");
+        }
+    }
+
+    private void InstantiateProjectile()
+    {
         Instantiate(projectile, catapultPosition.position, transform.rotation);
     }
 
 
 
-
+    //****************
     // Setting Animations
-    void SetAnimation()
-    {
-        // Running Animation
-        bool totoHasVelocity = Mathf.Abs(totoRigidbody.velocity.x) > Mathf.Epsilon;
-        totoAnimator.SetBool("isRunning", totoHasVelocity);
-        
-
-        // Jumping Animation
-        if (Mathf.Abs(totoRigidbody.velocity.y) > 0.8)
-        {
-            totoAnimator.SetBool("isJumping", true);
-            totoAnimator.SetBool("isRunning", false);
-        }
-
-        if (totoRigidbody.velocity.y == 0)
-        {
-            totoAnimator.SetBool("isJumping", false);
-        }
-
-        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
-        {
-            totoAnimator.SetBool("isJumping", false);
-        }
-
-        // Climbing Animation
-        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && Mathf.Abs(totoRigidbody.velocity.y) > 0.8f
-            && !totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
-        {
-            totoAnimator.SetBool("isClimbing", true);
-            totoAnimator.SetBool("isJumping", false);
-        }
-        else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
-        {
-            totoAnimator.SetBool("isClimbing", false);
-        }
-
-        // Death Animation
-        
-
-
-    }
+   
+    //**************
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

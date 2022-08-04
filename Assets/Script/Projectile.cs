@@ -31,6 +31,18 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SlimeEnemy"))
         {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+
+        Invoke("DestroyProjectileHittingGround", 0.5f);
+
+    }
+
+    private void DestroyProjectileHittingGround()
+    {
+        if (projectileRigidbody.IsTouchingLayers(LayerMask.GetMask("Platform")))
+        {
             Destroy(gameObject);
         }
     }
