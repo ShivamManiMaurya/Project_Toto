@@ -38,9 +38,10 @@ public class PlayerMovement : MonoBehaviour
         if (!heartsHealthVisual.isDead)
         {
             Run();
-            SetAnimation();
             ClimbLadder();
         }
+
+        SetAnimation();
     }
 
     // Player got Damage
@@ -99,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
         }
     }
+
 
     // This method is used from the tutorial of codeMonkey, for boxRayCast to check player is grounded or not
     private bool IsGrounded()
@@ -159,26 +161,30 @@ public class PlayerMovement : MonoBehaviour
         {
             totoAnimator.SetBool("isClimbing", true);
             totoAnimator.SetBool("isJumping", false);
-
-            Debug.Log("isClimbing = true hai");
-
-            //if ()
-            //totoAnimator.speed = 0.0f;
         }
         else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
         {
             totoAnimator.SetBool("isClimbing", false);
-            Debug.Log("isClimbing = false hai");
-        }
-        else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
-        {
-            totoAnimator.speed = 0.0f;
-            Debug.Log("isme hai sbb nautanki");
         }
 
+        // Death Animation
         
-      
 
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SlimeEnemy") && !heartsHealthVisual.isDead)
+        {
+            totoAnimator.SetTrigger("isHit");
+        }
+
+        if (heartsHealthVisual.isDead && collision.CompareTag("SlimeEnemy"))
+        {
+            Debug.Log("maar gaya");
+            totoAnimator.SetTrigger("Dying");
+        }
     }
 
 

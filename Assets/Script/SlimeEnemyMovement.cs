@@ -69,6 +69,8 @@ public class SlimeEnemyMovement : MonoBehaviour
             // We hit the player
             player.DamageKnockBack(damageAmount);
             Debug.Log("hit");
+
+            
         }
 
         // Fliping the enemey when they triggered with the trigger collider
