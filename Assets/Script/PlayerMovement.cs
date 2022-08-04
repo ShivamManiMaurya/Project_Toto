@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float totoClimbSpeed = 5;
     [SerializeField] LayerMask platformLayer;
     [SerializeField] int damageAmount = 4;
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform catapultPosition;
 
     bool facingRight = true;
     float gravityValueAtStart;
@@ -142,20 +144,25 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+
+    // Shooting Projectile
+    void OnFire(InputValue value)
+    {
+        if (heartsHealthVisual.isDead) { return; }
+
+        Instantiate(projectile, catapultPosition.position, transform.rotation);
+    }
+
+
+
+
     // Setting Animations
     void SetAnimation()
     {
         // Running Animation
         bool totoHasVelocity = Mathf.Abs(totoRigidbody.velocity.x) > Mathf.Epsilon;
-        if (totoHasVelocity)
-        {
-            totoAnimator.SetBool("isRunning", true);
-        }
-        else if (!totoHasVelocity)
-        {
-            totoAnimator.SetBool("isRunning", false);
-            totoAnimator.SetTrigger("Stoping");
-        }
+        totoAnimator.SetBool("isRunning", totoHasVelocity);
+        
 
         // Jumping Animation
         if (Mathf.Abs(totoRigidbody.velocity.y) > 0.8)

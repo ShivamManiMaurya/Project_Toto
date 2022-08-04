@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: 3.077096, y: -2.992136, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1692590761957331147}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,9 +78,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2005070615
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 652828262, guid: 4cd7c1cad0caed644bc43c04dc13c57e, type: 3}
+  m_Sprite: {fileID: 2098904734, guid: 44e8b6a48529c5a4b92be7c95d0deb82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,8 +125,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.268616, y: -0.15409017}
-  m_Size: {x: 0.718309, y: 1.0808825}
+  m_Offset: {x: 0.268616, y: -0.13446939}
+  m_Size: {x: 0.718309, y: 1.041641}
   m_Direction: 0
 --- !u!95 &1989184910
 Animator:
@@ -195,7 +196,9 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 64
-  totoRigidbody: {fileID: 0}
+  damageAmount: 4
+  projectile: {fileID: 3177813232486310315, guid: a071602f461d17849800a97597ac048d, type: 3}
+  catapultPosition: {fileID: 1692590761957331147}
 --- !u!61 &1064173289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,7 +216,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6666666, y: 1.6666666}
+    oldSize: {x: 3.3333333, y: 1.6666666}
     newSize: {x: 2.5, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -222,3 +225,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58004993, y: 0.82132506}
   m_EdgeRadius: 0
+--- !u!1 &5679969195067041268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1692590761957331147}
+  m_Layer: 8
+  m_Name: Catapult
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1692590761957331147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5679969195067041268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.311, y: -0.303, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1687935959288447117}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
