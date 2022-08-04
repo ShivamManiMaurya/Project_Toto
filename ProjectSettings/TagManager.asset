@@ -18,7 +18,7 @@ TagManager:
   - Player
   - Climbing
   - Enemies
-  - 
+  - Danger
   - 
   - 
   - 
@@ -51,6 +51,9 @@ TagManager:
     locked: 0
   - name: Platform
     uniqueID: 1238890141
+    locked: 0
+  - name: Danger
+    uniqueID: 3693970501
     locked: 0
   - name: Enemies
     uniqueID: 1081455357

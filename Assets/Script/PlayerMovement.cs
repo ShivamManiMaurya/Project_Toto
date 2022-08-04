@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float totoJumpSpeed = 5;
     [SerializeField] float totoClimbSpeed = 5;
     [SerializeField] LayerMask platformLayer;
+    [SerializeField] int damageAmount = 4;
 
     bool facingRight = true;
     float gravityValueAtStart;
@@ -93,12 +94,22 @@ public class PlayerMovement : MonoBehaviour
     // Jumping Part
     void OnJump(InputValue value)
     {
-        if (!totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
+        if (!totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) {
+
+            if (value.isPressed && !heartsHealthVisual.isDead && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
+            {
+                totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
+            }
+
+            return; 
+        }
    
         if (value.isPressed && IsGrounded() && !heartsHealthVisual.isDead)
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
         }
+
+        
     }
 
 
@@ -178,11 +189,29 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("SlimeEnemy") && !heartsHealthVisual.isDead)
         {
             totoAnimator.SetTrigger("isHit");
+            Debug.Log("Chot lagi");
         }
 
         if (heartsHealthVisual.isDead && collision.CompareTag("SlimeEnemy"))
         {
             Debug.Log("maar gaya");
+            totoAnimator.SetTrigger("Dying");
+        }
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
+        {
+            DamageKnockBack(damageAmount);
+            totoAnimator.SetTrigger("isHit");
+            Debug.Log("Spike hits");
+        }
+
+        if (heartsHealthVisual.isDead && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
+        {
+            Debug.Log("Spikes se maar gaya");
             totoAnimator.SetTrigger("Dying");
         }
     }
