@@ -146,8 +146,16 @@ public class PlayerMovement : MonoBehaviour
     void SetAnimation()
     {
         // Running Animation
-        bool val = Mathf.Abs(totoRigidbody.velocity.x) > Mathf.Epsilon;
-        totoAnimator.SetBool("isRunning", val);
+        bool totoHasVelocity = Mathf.Abs(totoRigidbody.velocity.x) > Mathf.Epsilon;
+        if (totoHasVelocity)
+        {
+            totoAnimator.SetBool("isRunning", true);
+        }
+        else if (!totoHasVelocity)
+        {
+            totoAnimator.SetBool("isRunning", false);
+            totoAnimator.SetTrigger("Stoping");
+        }
 
         // Jumping Animation
         if (Mathf.Abs(totoRigidbody.velocity.y) > 0.8)
