@@ -64,3 +64,6 @@ TagManager:
   - name: Player
     uniqueID: 2005070615
     locked: 0
+  - name: Cosmatics Tilemap
+    uniqueID: 3987806291
+    locked: 0
