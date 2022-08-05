@@ -163,12 +163,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-    //****************
-    // Setting Animations
-   
-    //**************
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("SlimeEnemy") && !heartsHealthVisual.isDead)
