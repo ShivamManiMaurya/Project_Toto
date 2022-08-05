@@ -55,6 +55,9 @@ TagManager:
   - name: Danger
     uniqueID: 3693970501
     locked: 0
+  - name: Pickups
+    uniqueID: 608998693
+    locked: 0
   - name: Enemies
     uniqueID: 1081455357
     locked: 0
