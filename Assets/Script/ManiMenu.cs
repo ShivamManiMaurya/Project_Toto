@@ -8,7 +8,7 @@ public class ManiMenu : MonoBehaviour
 {
     [SerializeField] Sprite clickedButtonSprite;
     [SerializeField] Button button;
-    [SerializeField] TextMeshPro buttonText;
+    [SerializeField] TextMeshProUGUI buttonText;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,8 @@ public class ManiMenu : MonoBehaviour
     public void ChangeButtonSprite()
     {
         button.image.sprite = clickedButtonSprite;
-        //buttonText.alignment = 
+        buttonText.rectTransform.anchoredPosition = button.image.sprite.rect.position;
+        Debug.Log(buttonText.rectTransform.anchoredPosition);
         buttonText.text = "Play";
         
     }
