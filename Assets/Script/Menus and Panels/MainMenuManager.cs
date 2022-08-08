@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] Animator transition;
-    [SerializeField] float waitTime = 2f;
+    [SerializeField] private float _waitTime = 2f;
     [SerializeField] private AudioClip _uiButtonPressedClip, _buttonHover;
     
 
@@ -21,10 +21,18 @@ public class MainMenuManager : MonoBehaviour
         transition.SetTrigger("Start");
 
         // Wait
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(_waitTime);
 
         //Load the stage
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 1;
+        }
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     public void Exit()
