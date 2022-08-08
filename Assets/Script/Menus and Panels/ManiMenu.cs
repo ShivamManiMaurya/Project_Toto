@@ -9,7 +9,7 @@ public class ManiMenu : MonoBehaviour
     public void ChangeButtonSprite()
     {
         button.image.sprite = clickedButtonSprite;
-        
     }
+
 
 }

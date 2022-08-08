@@ -7,6 +7,8 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] Animator transition;
     [SerializeField] float waitTime = 2f;
+    [SerializeField] private AudioClip _uiButtonPressedClip, _buttonHover;
+    
 
     public void PlayGame()
     {
@@ -30,4 +32,15 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Exit!");
         Application.Quit();
     }
+
+    public void PlayButtonClip()
+    {
+        SoundManager.Instance.PlaySound(_uiButtonPressedClip);
+    }
+
+    public void PlayHoverClip()
+    {
+        SoundManager.Instance.PlaySound(_buttonHover);
+    }
+
 }
