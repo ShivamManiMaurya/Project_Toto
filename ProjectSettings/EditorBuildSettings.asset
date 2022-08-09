@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage_3.unity
     guid: bf6aad0e9e2ec6d44b1b999ffebb275b
   - enabled: 1
-    path: Assets/Scenes/Game_Over_Won.unity
+    path: Assets/Scenes/You_Won.unity
     guid: 780428c1e83d38c4987cacfd6bfb649c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1d5b889cd22132b4d84f1d81af07ab6b, type: 2}

@@ -1457,7 +1457,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 92266399}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: PlayButtonClip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1467,9 +1467,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 92266399}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: PlayButtonClip
+      - m_Target: {fileID: 1752693268}
+        m_TargetAssemblyTypeName: ManiMenu, Assembly-CSharp
+        m_MethodName: ChangeButtonSprite
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
