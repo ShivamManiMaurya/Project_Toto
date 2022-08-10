@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameSession : MonoBehaviour
 {
-    [SerializeField] public int playerLives = 3;
+    [SerializeField] public int playerLives = 7;
     [SerializeField] public int playerScore = 0;
     [SerializeField] private TextMeshProUGUI _livesText;
     [SerializeField] private TextMeshProUGUI _scoreText;
@@ -65,11 +65,22 @@ public class GameSession : MonoBehaviour
         playerLives -= damageAmount;
         _livesText.text = playerLives.ToString();
     }
+
+    public void GiveLife(int healthAmount)
+    {
+        if (playerLives > 0 && playerLives < 9)
+        {
+            playerLives += healthAmount;
+            _livesText.text = playerLives.ToString();
+        }
+    }
         
     public void ScoreUpdater(int pointsScored)
     {
         playerScore += pointsScored;
         _scoreText.text = playerScore.ToString();
     }
+
+
 
 }

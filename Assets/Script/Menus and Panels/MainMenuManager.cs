@@ -43,12 +43,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayButtonClip()
     {
-        SoundManager.Instance.PlaySound(_uiButtonPressedClip);
+        SoundManager.Instance.PlaySound(_uiButtonPressedClip, 1f);
     }
 
     public void PlayHoverClip()
     {
-        SoundManager.Instance.PlaySound(_buttonHover);
+        SoundManager.Instance.PlaySound(_buttonHover, 1f);
     }
 
 }

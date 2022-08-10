@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    [SerializeField] private AudioClip _footStepSound;
+    [SerializeField] private float _footStepVolume = 1f;
+
     Rigidbody2D totoRigidbody;
     Animator totoAnimator;
     BoxCollider2D totoFeetCollider;
+    AudioSource playerAudioSource;
 
 
     void Start()
@@ -14,6 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
         totoRigidbody = GetComponent<Rigidbody2D>();
         totoAnimator = GetComponent<Animator>();
         totoFeetCollider = GetComponent<BoxCollider2D>();
+        playerAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,6 +33,24 @@ public class PlayerAnimationController : MonoBehaviour
         // Running Animation
         bool totoHasVelocity = Mathf.Abs(totoRigidbody.velocity.x) > 0.5f;
         totoAnimator.SetBool("isRunning", totoHasVelocity);
+        if (totoHasVelocity && Mathf.Abs(totoRigidbody.velocity.y) <= 0.2)
+        {
+            //StartCoroutine(FootStepSound());
+            if (!playerAudioSource.isPlaying)
+            {
+                playerAudioSource.Play();
+            }
+        }
+        //else if (Mathf.Abs(totoRigidbody.velocity.y) > 0.5)
+        //{
+        //    playerAudioSource.Stop();
+        //}
+
+        //IEnumerator FootStepSound()
+        //{
+        //    yield return new WaitForSecondsRealtime(1f);
+        //    AudioSource.PlayClipAtPoint(_footStepSound, Camera.main.transform.position);
+        //}
 
 
         // Jumping Animation

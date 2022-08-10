@@ -12,9 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] Transform catapultPosition;
 
-    // Different Damage Amounts
+    // Different Damage and Health Amounts
     [SerializeField] private int _dangerLayerDamageAmount = 1;
     [SerializeField] private int _slimeEnemyDamageAmount = 1;
+    
 
     bool facingRight = true;
     float gravityValueAtStart;
@@ -182,7 +183,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("maar gaya");
             totoAnimator.SetTrigger("Dying");
+            // for going to the first level after death use this
+            gameSession.CheckPlayerLife(0);
         }
+
+        
     }
 
 

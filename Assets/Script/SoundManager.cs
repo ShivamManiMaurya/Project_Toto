@@ -23,9 +23,10 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void PlaySound(AudioClip clip)
+    public void PlaySound(AudioClip clip, float volume)
     {
-        _effectClip.PlayOneShot(clip);
+        _effectClip.PlayOneShot(clip, volume);
+        
     }
 
 
