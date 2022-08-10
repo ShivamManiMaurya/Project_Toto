@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2456674115754199910, guid: dd8326ababffa2049bbb4523c7e33d6f, type: 3}
       propertyPath: m_Name
-      value: Coins
+      value: (Gem) Coins Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456674115754199928, guid: dd8326ababffa2049bbb4523c7e33d6f, type: 3}
+      propertyPath: ptsScored
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2456674115754199929, guid: dd8326ababffa2049bbb4523c7e33d6f, type: 3}
       propertyPath: m_RootOrder

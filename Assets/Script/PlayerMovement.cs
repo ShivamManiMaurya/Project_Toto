@@ -53,11 +53,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Player got Damage
-    //public void DamageKnockBack(int damageAmount)
-    //{
-    //    //transform.position += knockbackDir * knockbackDistance;
-    //    HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
-    //}
+    public void DamageKnockBack(int damageAmount)
+    {
+        //transform.position += knockbackDir * knockbackDistance;
+        HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
+    }
 
     // Player got Healed
     //public void Heal(int healAmount)
@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
         {
-            //DamageKnockBack(damageAmount);
+            //DamageKnockBack(_dangerLayerDamageAmount);
             TotoGotHit(_dangerLayerDamageAmount);
             totoAnimator.SetTrigger("isHit");
             Debug.Log("Spike hits");
@@ -200,6 +200,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Spikes se maar gaya");
             totoAnimator.SetTrigger("Dying");
+            gameSession.CheckPlayerLife(0);
         }
     }
 

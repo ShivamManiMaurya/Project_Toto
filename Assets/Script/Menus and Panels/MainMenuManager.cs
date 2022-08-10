@@ -21,7 +21,7 @@ public class MainMenuManager : MonoBehaviour
         transition.SetTrigger("Start");
 
         // Wait
-        yield return new WaitForSeconds(_waitTime);
+        yield return new WaitForSecondsRealtime(_waitTime);
 
         //Load the stage
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
