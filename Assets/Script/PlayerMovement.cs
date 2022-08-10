@@ -9,9 +9,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float totoJumpSpeed = 5;
     [SerializeField] float totoClimbSpeed = 5;
     [SerializeField] LayerMask platformLayer;
-    [SerializeField] int damageAmount = 4;
     [SerializeField] GameObject projectile;
     [SerializeField] Transform catapultPosition;
+
+    // Different Damage Amounts
+    [SerializeField] private int _dangerLayerDamageAmount = 1;
+    [SerializeField] private int _slimeEnemyDamageAmount = 1;
 
     bool facingRight = true;
     float gravityValueAtStart;
@@ -21,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
     Animator totoAnimator;
     CapsuleCollider2D totoBodyCollider;
     BoxCollider2D totoFeetCollider;
-    HeartsHealthVisual heartsHealthVisual;
+    //HeartsHealthVisual heartsHealthVisual;
+    GameSession gameSession;
 
 
     void Start()
@@ -31,33 +35,35 @@ public class PlayerMovement : MonoBehaviour
         totoBodyCollider = GetComponent<CapsuleCollider2D>();
         totoFeetCollider = GetComponent<BoxCollider2D>();
         gravityValueAtStart = totoRigidbody.gravityScale;
-        heartsHealthVisual = FindObjectOfType<HeartsHealthVisual>();
-
+        //heartsHealthVisual = FindObjectOfType<HeartsHealthVisual>();
+        gameSession = FindObjectOfType<GameSession>(); 
     }
 
     void Update()
     {
         // If Player is Dead then these functions don't work
-        if (!heartsHealthVisual.isDead)
+        //if (!heartsHealthVisual.isDead)
+        if (gameSession.playerLives > 0)
         {
             Run();
             ClimbLadder();
         }
         
+        
     }
 
     // Player got Damage
-    public void DamageKnockBack(int damageAmount)
-    {
-        //transform.position += knockbackDir * knockbackDistance;
-        HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
-    }
+    //public void DamageKnockBack(int damageAmount)
+    //{
+    //    //transform.position += knockbackDir * knockbackDistance;
+    //    HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
+    //}
 
     // Player got Healed
-    public void Heal(int healAmount)
-    {
-        HeartsHealthVisual.heartsHealthSystemStatic.Heal(healAmount);
-    }
+    //public void Heal(int healAmount)
+    //{
+    //    HeartsHealthVisual.heartsHealthSystemStatic.Heal(healAmount);
+    //}
 
 
     // Movement Part
@@ -97,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) {
 
-            if (value.isPressed && !heartsHealthVisual.isDead && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
+            if (value.isPressed && (gameSession.playerLives > 0) && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
             {
                 totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
             }
@@ -105,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
             return; 
         }
    
-        if (value.isPressed && IsGrounded() && !heartsHealthVisual.isDead)
+        if (value.isPressed && IsGrounded() && (gameSession.playerLives > 0)) 
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
         }
@@ -147,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
     // Shooting Projectile
     void OnFire(InputValue value)
     {
-        if (heartsHealthVisual.isDead) { return; }
+        if ((gameSession.playerLives <= 0)) { return; }
 
         if (value.isPressed)
         {
@@ -165,13 +171,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("SlimeEnemy") && !heartsHealthVisual.isDead)
+        if (collision.CompareTag("SlimeEnemy") && (gameSession.playerLives > 0))
         {
+            TotoGotHit(_slimeEnemyDamageAmount);
             totoAnimator.SetTrigger("isHit");
             Debug.Log("Chot lagi");
         }
 
-        if (heartsHealthVisual.isDead && collision.CompareTag("SlimeEnemy"))
+        if ((gameSession.playerLives <= 0) && collision.CompareTag("SlimeEnemy"))
         {
             Debug.Log("maar gaya");
             totoAnimator.SetTrigger("Dying");
@@ -183,12 +190,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
         {
-            DamageKnockBack(damageAmount);
+            //DamageKnockBack(damageAmount);
+            TotoGotHit(_dangerLayerDamageAmount);
             totoAnimator.SetTrigger("isHit");
             Debug.Log("Spike hits");
         }
 
-        if (heartsHealthVisual.isDead && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
+        if ((gameSession.playerLives <= 0) && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
         {
             Debug.Log("Spikes se maar gaya");
             totoAnimator.SetTrigger("Dying");
@@ -196,7 +204,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+    public void TotoGotHit(int damageAmount)
+    {
+        gameSession.CheckPlayerLife(damageAmount);
+    }
 
 
 }

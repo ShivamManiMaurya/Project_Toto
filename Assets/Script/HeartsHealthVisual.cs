@@ -8,6 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class HeartsHealthVisual : MonoBehaviour
 {
+    //int numOfHeartsHealthVisualSessions;
+    //[SerializeField] private GameObject rootGameObject;
+
+    
+
+
     public static HeartsHealthSystem heartsHealthSystemStatic;
 
     [SerializeField] private Sprite heart0Sprite;
@@ -15,7 +21,8 @@ public class HeartsHealthVisual : MonoBehaviour
     [SerializeField] private Sprite heart2Sprite;
     [SerializeField] private Sprite heart3Sprite;
     [SerializeField] private Sprite heart4Sprite;
-
+    
+   
     private List<HeartImage> heartImageList;
     private HeartsHealthSystem heartsHealthSystem;
 
@@ -26,6 +33,19 @@ public class HeartsHealthVisual : MonoBehaviour
     private void Awake()
     {
         heartImageList = new List<HeartImage>();
+
+        //numOfHeartsHealthVisualSessions = FindObjectsOfType<HeartsHealthVisual>().Length;
+        //if (numOfHeartsHealthVisualSessions > 1)
+        //{
+        //    Destroy(rootGameObject);
+        //}
+        //else
+        //{
+        //    DontDestroyOnLoad(rootGameObject); 
+        //}
+
+        //DontDestroyOnLoad(rootGameObject);
+
     }
 
 

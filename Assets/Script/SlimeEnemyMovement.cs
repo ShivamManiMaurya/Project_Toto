@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlimeEnemyMovement : MonoBehaviour
 {
-    [SerializeField] int damageAmount = 1;
+    //[SerializeField] int damageAmount = 1;
     [SerializeField] float slimeSpeed = 5f;
     [SerializeField] bool mustPetrol;
     [SerializeField] LayerMask platfromLayer;
@@ -63,15 +63,15 @@ public class SlimeEnemyMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         // The damage taken by the player
-        PlayerMovement player = collider.GetComponent<PlayerMovement>();
-        if (player != null)
-        {
-            // We hit the player
-            player.DamageKnockBack(damageAmount);
-            Debug.Log("hit");
+        //PlayerMovement player = collider.GetComponent<PlayerMovement>();
+        //if (player != null)
+        //{
+        //    // We hit the player
+        //    player.DamageKnockBack(damageAmount);
+        //    Debug.Log("hit");
 
             
-        }
+        //}
 
         // Fliping the enemey when they triggered with the trigger collider
         if (slimeBoxCollider.IsTouchingLayers(platfromLayer))

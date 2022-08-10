@@ -2,51 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameSession : MonoBehaviour
 {
-    HeartsHealthVisual heartsHealthVisual;
-    int numOfGameSession;
-    public int gameCheck = 3;
+    [SerializeField] public int playerLives = 3;
+    [SerializeField] private TextMeshProUGUI _livesText;
+    [SerializeField] private TextMeshProUGUI _scoreText;
+    
 
-    void Awake()
+    private void Awake()
     {
-        numOfGameSession = FindObjectsOfType<GameSession>().Length;
-        
-        if (numOfGameSession > 1)
+        int numOfGameSession = FindObjectsOfType<GameSession>().Length;
+        if (numOfGameSession > 1 )
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
         else
         {
             DontDestroyOnLoad(gameObject);
         }
-
-        Debug.Log(numOfGameSession);
     }
-
-
 
     private void Start()
     {
-        heartsHealthVisual = FindObjectOfType<HeartsHealthVisual>();
+        _livesText.text = playerLives.ToString();
     }
 
-    private void Update()
+    public void CheckPlayerLife(int damageAmount)
     {
-        //Debug.Log("Update = " + numOfGameSession);
-    }
-
-    public void CheckPlayerLife()
-    {
-        if (heartsHealthVisual.isDead)
+        if (playerLives > 1)
         {
-            ResetGameSession();
+            TakeLife(damageAmount);
         }
         else
         {
-            //DontDestroyOnLoad(gameObject);
-            gameCheck--;
+            ResetGameSession();
         }
     }
 
@@ -54,6 +46,12 @@ public class GameSession : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         Destroy(gameObject);
+    }
+
+    private void TakeLife(int damageAmount)
+    {
+        playerLives -= damageAmount;
+        _livesText.text = playerLives.ToString();
     }
 
 }
