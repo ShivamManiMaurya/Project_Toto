@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] private AudioClip _slimeDeathSfx;
     [SerializeField] private float _slimeDeathVol = 1f;
+    [SerializeField] private int _slimeKillPoints = 100;
 
     Rigidbody2D projectileRigidbody;
     PlayerMovement player;
@@ -35,6 +36,8 @@ public class Projectile : MonoBehaviour
         {
             Destroy(collision.gameObject);
             SoundManager.Instance.PlaySound(_slimeDeathSfx, _slimeDeathVol);
+            FindObjectOfType<GameSession>().ScoreUpdater(_slimeKillPoints);
+
             Destroy(gameObject);
         }
 

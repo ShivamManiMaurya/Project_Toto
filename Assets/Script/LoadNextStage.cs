@@ -22,8 +22,9 @@ public class LoadNextStage : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-        if (SceneManager.GetActiveScene().name == "You_Won")
+        if (SceneManager.GetActiveScene().name == "Stage_3")
         {
+            Debug.Log("YOu won level music section");
             SoundManager.Instance.PlayMusic(_youWonMusic);
         }
         else
