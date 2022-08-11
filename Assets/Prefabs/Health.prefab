@@ -115,3 +115,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthAmount: 1
+  _healthSfx: {fileID: 8300000, guid: 6db6b0baa828e6140aa9a1e3f044c9b5, type: 3}
+  _healthSfxVolume: 1

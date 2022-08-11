@@ -15,7 +15,9 @@ public class PlayerMovement : MonoBehaviour
     // Different Damage and Health Amounts
     [SerializeField] private int _dangerLayerDamageAmount = 1;
     [SerializeField] private int _slimeEnemyDamageAmount = 1;
-    
+
+    [SerializeField] private AudioClip _projectileShootSfx;
+    [SerializeField] private float _projectileShooteSfxVolume = 1f;
 
     bool facingRight = true;
     float gravityValueAtStart;
@@ -167,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
     private void InstantiateProjectile()
     {
         Instantiate(projectile, catapultPosition.position, transform.rotation);
+        SoundManager.Instance.PlaySound(_projectileShootSfx, _projectileShooteSfxVolume);
     }
 
 

@@ -228,6 +228,8 @@ MonoBehaviour:
   catapultPosition: {fileID: 1692590761957331147}
   _dangerLayerDamageAmount: 1
   _slimeEnemyDamageAmount: 1
+  _projectileShootSfx: {fileID: 8300000, guid: 4c9ea0dab4ef34c4bb81b48816f5fe0c, type: 3}
+  _projectileShooteSfxVolume: 1
 --- !u!114 &1622494930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63175a611c24fe4fa74aec5c23a18d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _footStepSound: {fileID: 8300000, guid: 223e53b93aa36c84da953d7e39ca1de5, type: 3}
-  _footStepVolume: 1
 --- !u!82 &-5061383203830740030
 AudioSource:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3fe3e5497c6b05d458e68a86e936f6ac, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

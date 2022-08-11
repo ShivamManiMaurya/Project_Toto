@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField] private AudioClip _footStepSound;
-    [SerializeField] private float _footStepVolume = 1f;
+    //[SerializeField] private AudioClip _footStepSound;
+    //[SerializeField] private float _footStepVolume = 1f;
 
     Rigidbody2D totoRigidbody;
     Animator totoAnimator;
