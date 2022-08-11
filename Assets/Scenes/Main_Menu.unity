@@ -937,6 +937,7 @@ MonoBehaviour:
   _waitTime: 2
   _uiButtonPressedClip: {fileID: 8300000, guid: d9fcd60b1f6fd724a97624579abbd1f7, type: 3}
   _buttonHover: {fileID: 8300000, guid: 23977a6f806150349b0c1046a214c122, type: 3}
+  _stageOneMusic: {fileID: 8300000, guid: d6763650439365a4ea8e0f81329e792d, type: 3}
 --- !u!1 &1077490825
 GameObject:
   m_ObjectHideFlags: 0

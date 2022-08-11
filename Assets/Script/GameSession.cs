@@ -10,6 +10,7 @@ public class GameSession : MonoBehaviour
     [SerializeField] public int playerScore = 0;
     [SerializeField] private TextMeshProUGUI _livesText;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private AudioClip _gameOverMusic;
     
 
     private void Awake()
@@ -34,10 +35,11 @@ public class GameSession : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.sceneCountInBuildSettings == (SceneManager.GetActiveScene().buildIndex + 1))
+        if (SceneManager.GetActiveScene().name == "You_Won")
         {
             Destroy(gameObject);
         }
+        
     }
 
     public void CheckPlayerLife(int damageAmount)
@@ -56,7 +58,9 @@ public class GameSession : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game_Over_Die");
+        SoundManager.Instance.PlayMusic(_gameOverMusic);
+
         Destroy(gameObject);
     }
 

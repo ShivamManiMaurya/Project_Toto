@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] Animator transition;
     [SerializeField] private float _waitTime = 2f;
-    [SerializeField] private AudioClip _uiButtonPressedClip, _buttonHover;
+    [SerializeField] private AudioClip _uiButtonPressedClip, _buttonHover, _stageOneMusic;
     
 
     public void PlayGame()
@@ -32,7 +32,16 @@ public class MainMenuManager : MonoBehaviour
             nextSceneIndex = 1;
         }
 
-        SceneManager.LoadScene(nextSceneIndex);
+        if (SceneManager.GetActiveScene().name == "You_Won")
+        {
+            SceneManager.LoadScene("Stage_1");
+        }
+        else
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+
+        SoundManager.Instance.PlayMusic(_stageOneMusic);
     }
 
     public void Exit()

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadNextStage : MonoBehaviour
 {
     [SerializeField] private float _waitTime = 0.5f;
-    [SerializeField] private AudioClip _changeAudioTrack;
+    [SerializeField] private AudioClip _changeAudioTrack, _youWonMusic;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +21,15 @@ public class LoadNextStage : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SoundManager.Instance.PlayMusic(_changeAudioTrack);
+
+        if (SceneManager.GetActiveScene().name == "You_Won")
+        {
+            SoundManager.Instance.PlayMusic(_youWonMusic);
+        }
+        else
+        {
+            SoundManager.Instance.PlayMusic(_changeAudioTrack);
+        }
+        
     }
 }

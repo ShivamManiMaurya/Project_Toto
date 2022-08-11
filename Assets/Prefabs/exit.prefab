@@ -126,3 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waitTime: 0.5
   _changeAudioTrack: {fileID: 8300000, guid: d6763650439365a4ea8e0f81329e792d, type: 3}
+  _youWonMusic: {fileID: 8300000, guid: 90e7e09afe5d16f4d8e737c20169c437, type: 3}

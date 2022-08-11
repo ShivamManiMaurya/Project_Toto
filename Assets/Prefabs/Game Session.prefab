@@ -498,3 +498,4 @@ MonoBehaviour:
   playerScore: 0
   _livesText: {fileID: 1241877246}
   _scoreText: {fileID: 1654329898}
+  _gameOverMusic: {fileID: 8300000, guid: c09aa3418480e8443af655ea2f39c9b3, type: 3}
