@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float projectileSpeed = 5f;
+    [SerializeField] private AudioClip _slimeDeathSfx;
+    [SerializeField] private float _slimeDeathVol = 1f;
 
     Rigidbody2D projectileRigidbody;
     PlayerMovement player;
@@ -32,6 +34,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("SlimeEnemy"))
         {
             Destroy(collision.gameObject);
+            SoundManager.Instance.PlaySound(_slimeDeathSfx, _slimeDeathVol);
             Destroy(gameObject);
         }
 

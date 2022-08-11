@@ -229,7 +229,11 @@ MonoBehaviour:
   _dangerLayerDamageAmount: 1
   _slimeEnemyDamageAmount: 1
   _projectileShootSfx: {fileID: 8300000, guid: 4c9ea0dab4ef34c4bb81b48816f5fe0c, type: 3}
+  _playerHitSfx: {fileID: 8300000, guid: 12e10e4ef54d9004ab98212b183d1a6a, type: 3}
+  _playerDeathSfx: {fileID: 8300000, guid: b21c71b8452b6a140a47d5b9e056db06, type: 3}
   _projectileShooteSfxVolume: 1
+  _jumpSfx: {fileID: 8300000, guid: 37a6a8eba28c4e7419173fd3cd810ba8, type: 3}
+  _jumpVolume: 2
 --- !u!114 &1622494930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63175a611c24fe4fa74aec5c23a18d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bounceSfx: {fileID: 8300000, guid: 376cbff80bbbc0f4e8a4c64c16783136, type: 3}
+  _bounceSfxVolume: 1
 --- !u!82 &-5061383203830740030
 AudioSource:
   m_ObjectHideFlags: 0

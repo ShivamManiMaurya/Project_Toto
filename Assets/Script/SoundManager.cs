@@ -29,5 +29,15 @@ public class SoundManager : MonoBehaviour
         
     }
 
+    public void PlayMusic(AudioClip clip)
+    {
+        if (_musicClip.clip.name == clip.name)
+        { return; }
+
+        _musicClip.Stop();
+        _musicClip.clip = clip;
+        _musicClip.Play();
+    }
+
 
 }

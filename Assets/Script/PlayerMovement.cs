@@ -16,8 +16,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int _dangerLayerDamageAmount = 1;
     [SerializeField] private int _slimeEnemyDamageAmount = 1;
 
-    [SerializeField] private AudioClip _projectileShootSfx;
+    // Audio Clips and volume
+    [SerializeField] private AudioClip _projectileShootSfx, _playerHitSfx, _playerDeathSfx;
     [SerializeField] private float _projectileShooteSfxVolume = 1f;
+    [SerializeField] private AudioClip _jumpSfx;
+    [SerializeField] private float _jumpVolume = 1f;
+   
 
     bool facingRight = true;
     float gravityValueAtStart;
@@ -29,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D totoFeetCollider;
     //HeartsHealthVisual heartsHealthVisual;
     GameSession gameSession;
+    AudioSource playerAudioSource;
 
 
     void Start()
@@ -39,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
         totoFeetCollider = GetComponent<BoxCollider2D>();
         gravityValueAtStart = totoRigidbody.gravityScale;
         //heartsHealthVisual = FindObjectOfType<HeartsHealthVisual>();
-        gameSession = FindObjectOfType<GameSession>(); 
+        gameSession = FindObjectOfType<GameSession>();
+        playerAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -116,7 +122,9 @@ public class PlayerMovement : MonoBehaviour
    
         if (value.isPressed && IsGrounded() && (gameSession.playerLives > 0)) 
         {
-            totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed); 
+            totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
+            //SoundManager.Instance.PlaySound(_jumpSfx, _jumpVolume);
+            playerAudioSource.PlayOneShot(_jumpSfx, _jumpVolume);
         }
 
         
@@ -179,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
         {
             TotoGotHit(_slimeEnemyDamageAmount);
             totoAnimator.SetTrigger("isHit");
+            AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
             Debug.Log("Chot lagi");
         }
 
@@ -186,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("maar gaya");
             totoAnimator.SetTrigger("Dying");
+            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
             // for going to the first level after death use this
             gameSession.CheckPlayerLife(0);
         }
@@ -201,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
             //DamageKnockBack(_dangerLayerDamageAmount);
             TotoGotHit(_dangerLayerDamageAmount);
             totoAnimator.SetTrigger("isHit");
+            AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
             Debug.Log("Spike hits");
         }
 
@@ -208,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Spikes se maar gaya");
             totoAnimator.SetTrigger("Dying");
+            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
             gameSession.CheckPlayerLife(0);
         }
     }

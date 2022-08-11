@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    //[SerializeField] private AudioClip _footStepSound;
-    //[SerializeField] private float _footStepVolume = 1f;
+    [SerializeField] private AudioClip _bounceSfx;
+    [SerializeField] private float _bounceSfxVolume = 1f;
 
     Rigidbody2D totoRigidbody;
     Animator totoAnimator;
     BoxCollider2D totoFeetCollider;
     AudioSource playerAudioSource;
+    
 
 
     void Start()
@@ -33,7 +34,8 @@ public class PlayerAnimationController : MonoBehaviour
         // Running Animation
         bool totoHasVelocity = Mathf.Abs(totoRigidbody.velocity.x) > 0.5f;
         totoAnimator.SetBool("isRunning", totoHasVelocity);
-        if (totoHasVelocity && Mathf.Abs(totoRigidbody.velocity.y) <= 0.2)
+        if (totoHasVelocity && Mathf.Abs(totoRigidbody.velocity.y) <= 0.2 &&
+            totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
         {
             //StartCoroutine(FootStepSound());
             if (!playerAudioSource.isPlaying)
@@ -41,16 +43,6 @@ public class PlayerAnimationController : MonoBehaviour
                 playerAudioSource.Play();
             }
         }
-        //else if (Mathf.Abs(totoRigidbody.velocity.y) > 0.5)
-        //{
-        //    playerAudioSource.Stop();
-        //}
-
-        //IEnumerator FootStepSound()
-        //{
-        //    yield return new WaitForSecondsRealtime(1f);
-        //    AudioSource.PlayClipAtPoint(_footStepSound, Camera.main.transform.position);
-        //}
 
 
         // Jumping Animation
@@ -84,6 +76,10 @@ public class PlayerAnimationController : MonoBehaviour
 
         // Death Animation
 
+        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Bouncing")))
+        {
+            playerAudioSource.PlayOneShot(_bounceSfx, _bounceSfxVolume);
+        }
 
 
     }
