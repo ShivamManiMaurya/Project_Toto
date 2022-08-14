@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //public static bool EscapeIsPressed = false;
+
     [SerializeField] float totoSpeed = 5;
     [SerializeField] float totoJumpSpeed = 5;
     [SerializeField] float totoClimbSpeed = 5;
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // If Player is Dead then these functions don't work
         //if (!heartsHealthVisual.isDead)
-        if (gameSession.playerLives > 0)
+        if (gameSession.playerLives > 0 && !PauseMenu.GameIsPaused)
         {
             Run();
             ClimbLadder();
@@ -120,7 +122,8 @@ public class PlayerMovement : MonoBehaviour
             return; 
         }
    
-        if (value.isPressed && IsGrounded() && (gameSession.playerLives > 0)) 
+        if (value.isPressed && IsGrounded() && (gameSession.playerLives > 0) 
+            && !PauseMenu.GameIsPaused) 
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
             //SoundManager.Instance.PlaySound(_jumpSfx, _jumpVolume);
@@ -166,13 +169,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((gameSession.playerLives <= 0)) { return; }
 
-        if (value.isPressed)
+        if (value.isPressed && !PauseMenu.GameIsPaused)
         {
             Invoke("InstantiateProjectile", 0.5f);
             //InstantiateProjectile();
             totoAnimator.SetTrigger("Attack");
         }
     }
+
+
+    //void OnPause(InputValue value)
+    //{
+    //    if (value.isPressed)
+    //    {
+    //        EscapeIsPressed = true;
+    //    }
+    //}
 
     private void InstantiateProjectile()
     {
