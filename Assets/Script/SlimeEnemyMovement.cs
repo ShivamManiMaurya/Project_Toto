@@ -9,8 +9,8 @@ public class SlimeEnemyMovement : MonoBehaviour
     [SerializeField] bool mustPetrol;
     [SerializeField] LayerMask platfromLayer;
 
-    float slimeScale;
-    bool mustTurn;
+    private float slimeScale;
+    private bool mustTurn;
 
     BoxCollider2D slimeBoxCollider;
     Transform slimeTransform;
