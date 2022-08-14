@@ -16,6 +16,7 @@ public class SlimeEnemyMovement : MonoBehaviour
     Transform slimeTransform;
     Rigidbody2D slimeRigidbody;
     Transform groundIsPresentOrNot;
+    Animator slimeAnimator;
     
 
     void Start()
@@ -25,6 +26,7 @@ public class SlimeEnemyMovement : MonoBehaviour
         slimeScale = slimeTransform.localScale.x;
         slimeRigidbody = GetComponent<Rigidbody2D>();
         groundIsPresentOrNot = transform.Find("GroundIsPresentOrNot");
+        slimeAnimator = GetComponent<Animator>();
 
         mustPetrol = true;
     }
@@ -80,5 +82,8 @@ public class SlimeEnemyMovement : MonoBehaviour
         }
     }
 
-
+    public void slimeDeathAnimation()
+    {
+        slimeAnimator.SetTrigger("SlimeDying");
+    }
 }

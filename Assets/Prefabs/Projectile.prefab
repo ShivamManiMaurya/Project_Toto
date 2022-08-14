@@ -149,3 +149,5 @@ MonoBehaviour:
   projectileSpeed: 20
   _slimeDeathSfx: {fileID: 8300000, guid: e9f624ec7b091d14693d3bf02e20ba60, type: 3}
   _slimeDeathVol: 1
+  _slimeKillPoints: 100
+  slimeAnimtor: {fileID: 0}

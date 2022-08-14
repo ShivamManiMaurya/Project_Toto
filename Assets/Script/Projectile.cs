@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private AudioClip _slimeDeathSfx;
     [SerializeField] private float _slimeDeathVol = 1f;
     [SerializeField] private int _slimeKillPoints = 100;
+    
 
     Rigidbody2D projectileRigidbody;
     PlayerMovement player;
@@ -18,6 +19,7 @@ public class Projectile : MonoBehaviour
         projectileRigidbody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerMovement>();
         projectileVelocity = player.transform.localScale.x * projectileSpeed;
+        
     }
 
     void Update()
@@ -34,7 +36,11 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SlimeEnemy"))
         {
-            Destroy(collision.gameObject);
+            FindObjectOfType<SlimeEnemyMovement>().slimeDeathAnimation();
+
+            Destroy(collision.gameObject, 1f);
+            
+            
             SoundManager.Instance.PlaySound(_slimeDeathSfx, _slimeDeathVol);
             FindObjectOfType<GameSession>().ScoreUpdater(_slimeKillPoints);
 
@@ -43,6 +49,15 @@ public class Projectile : MonoBehaviour
 
         Invoke("DestroyProjectileHittingGround", 0.5f);
 
+    }
+
+    private void SlimeDeathDelay(GameObject colGameObject)
+    {
+
+        // here collision.gameObject is the slime enemy gameObject
+        Destroy(colGameObject);
+
+        Debug.Log("slimedeathdelay working");
     }
 
     private void DestroyProjectileHittingGround()
