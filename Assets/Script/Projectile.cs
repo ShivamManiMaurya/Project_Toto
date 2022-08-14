@@ -13,12 +13,14 @@ public class Projectile : MonoBehaviour
     Rigidbody2D projectileRigidbody;
     PlayerMovement player;
     float projectileVelocity;
+    CrabEnemy crabEnemy;
 
     void Start()
     {
         projectileRigidbody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerMovement>();
         projectileVelocity = player.transform.localScale.x * projectileSpeed;
+        crabEnemy = FindObjectOfType<CrabEnemy>();
         
     }
 
@@ -47,18 +49,20 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (collision.gameObject.CompareTag("CrabEnemy"))
+        {
+            crabEnemy.TakeDamage(1);
+            //Destroy(collision.gameObject);
+
+            Destroy(gameObject);
+            Debug.Log("Hitting crab");
+        }
+
         Invoke("DestroyProjectileHittingGround", 0.5f);
 
     }
 
-    private void SlimeDeathDelay(GameObject colGameObject)
-    {
-
-        // here collision.gameObject is the slime enemy gameObject
-        Destroy(colGameObject);
-
-        Debug.Log("slimedeathdelay working");
-    }
+    
 
     private void DestroyProjectileHittingGround()
     {

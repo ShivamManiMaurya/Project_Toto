@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrabEnemy : MonoBehaviour
 {
-    [SerializeField] float crabSpeed = 5f;
+    [SerializeField] float crabSpeed = 5f, health, maxHealth = 3f;
     [SerializeField] bool mustPetrol;
     [SerializeField] LayerMask platfromLayer;
 
@@ -27,6 +27,7 @@ public class CrabEnemy : MonoBehaviour
         crabScale = crabTransform.localScale.x;
 
         mustPetrol = true;
+        health = maxHealth;
     }
 
     void Update()
@@ -47,7 +48,6 @@ public class CrabEnemy : MonoBehaviour
         if (mustTurn)
         {
             Flip();
-            Debug.Log("physics wals Flip chala");
         }
         crabRigidbody.velocity = new Vector2(crabSpeed * Time.fixedDeltaTime, crabRigidbody.velocity.y);
     }
@@ -64,9 +64,18 @@ public class CrabEnemy : MonoBehaviour
         if (crabBoxCollider.IsTouchingLayers(platfromLayer))
         {
             Flip();
-            Debug.Log("BoxCollider wala Flip chala");
         }
     }
 
+
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject, 1f);
+        }
+    }
 
 }

@@ -5539,9 +5539,10 @@ GameObject:
   - component: {fileID: 1759932349}
   - component: {fileID: 1759932352}
   - component: {fileID: 1759932353}
-  m_Layer: 0
+  - component: {fileID: 1759932354}
+  m_Layer: 10
   m_Name: CrabEnemy
-  m_TagString: Untagged
+  m_TagString: CrabEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5563,8 +5564,8 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Interpolate: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1759932350
@@ -5674,10 +5675,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crabSpeed: 200
+  health: 0
+  maxHealth: 3
   mustPetrol: 0
   platfromLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!70 &1759932354
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759932348}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.013802069, y: -0.13673247}
+  m_Size: {x: 1.0129974, y: 0.5648882}
+  m_Direction: 1
 --- !u!1 &1808261497
 GameObject:
   m_ObjectHideFlags: 0
@@ -15139,7 +15158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1947083930}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CrabGroundIsPresentOrNot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15972,10 +15991,6 @@ PrefabInstance:
     - target: {fileID: 3431041369584447472, guid: f60746f5eaa8bcf47876190ecb0a74d0, type: 3}
       propertyPath: m_Name
       value: Slime (Enemy)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3431041369584447480, guid: f60746f5eaa8bcf47876190ecb0a74d0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3431041369584447484, guid: f60746f5eaa8bcf47876190ecb0a74d0, type: 3}
       propertyPath: m_RootOrder

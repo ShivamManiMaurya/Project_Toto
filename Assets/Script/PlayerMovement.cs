@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //public static bool EscapeIsPressed = false;
 
     [SerializeField] float totoSpeed = 5;
     [SerializeField] float totoJumpSpeed = 5;
@@ -14,12 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] Transform catapultPosition;
 
-    // Different Damage and Health Amounts
-    [SerializeField] private int _dangerLayerDamageAmount = 1;
-    [SerializeField] private int _slimeEnemyDamageAmount = 1;
 
     // Audio Clips and volume
-    [SerializeField] private AudioClip _projectileShootSfx, _playerHitSfx, _playerDeathSfx;
+    [SerializeField] private AudioClip _projectileShootSfx;
     [SerializeField] private float _projectileShooteSfxVolume = 1f;
     [SerializeField] private AudioClip _jumpSfx;
     [SerializeField] private float _jumpVolume = 1f;
@@ -31,9 +27,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D totoRigidbody;
     Animator totoAnimator;
-    CapsuleCollider2D totoBodyCollider;
     BoxCollider2D totoFeetCollider;
-    //HeartsHealthVisual heartsHealthVisual;
     GameSession gameSession;
     AudioSource playerAudioSource;
 
@@ -42,10 +36,8 @@ public class PlayerMovement : MonoBehaviour
     {
         totoRigidbody = GetComponent<Rigidbody2D>();
         totoAnimator = GetComponent<Animator>();
-        totoBodyCollider = GetComponent<CapsuleCollider2D>();
         totoFeetCollider = GetComponent<BoxCollider2D>();
         gravityValueAtStart = totoRigidbody.gravityScale;
-        //heartsHealthVisual = FindObjectOfType<HeartsHealthVisual>();
         gameSession = FindObjectOfType<GameSession>();
         playerAudioSource = GetComponent<AudioSource>();
     }
@@ -53,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // If Player is Dead then these functions don't work
-        //if (!heartsHealthVisual.isDead)
         if (gameSession.playerLives > 0 && !PauseMenu.GameIsPaused)
         {
             Run();
@@ -66,15 +57,8 @@ public class PlayerMovement : MonoBehaviour
     // Player got Damage
     public void DamageKnockBack(int damageAmount)
     {
-        //transform.position += knockbackDir * knockbackDistance;
         HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
     }
-
-    // Player got Healed
-    //public void Heal(int healAmount)
-    //{
-    //    HeartsHealthVisual.heartsHealthSystemStatic.Heal(healAmount);
-    //}
 
 
     // Movement Part
@@ -129,8 +113,6 @@ public class PlayerMovement : MonoBehaviour
             //SoundManager.Instance.PlaySound(_jumpSfx, _jumpVolume);
             playerAudioSource.PlayOneShot(_jumpSfx, _jumpVolume);
         }
-
-        
     }
 
 
@@ -172,19 +154,10 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed && !PauseMenu.GameIsPaused)
         {
             Invoke("InstantiateProjectile", 0.5f);
-            //InstantiateProjectile();
             totoAnimator.SetTrigger("Attack");
         }
     }
 
-
-    //void OnPause(InputValue value)
-    //{
-    //    if (value.isPressed)
-    //    {
-    //        EscapeIsPressed = true;
-    //    }
-    //}
 
     private void InstantiateProjectile()
     {
@@ -192,55 +165,6 @@ public class PlayerMovement : MonoBehaviour
         SoundManager.Instance.PlaySound(_projectileShootSfx, _projectileShooteSfxVolume);
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("SlimeEnemy") && (gameSession.playerLives > 0))
-        {
-            TotoGotHit(_slimeEnemyDamageAmount);
-            totoAnimator.SetTrigger("isHit");
-            AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
-            Debug.Log("Chot lagi");
-        }
-
-        if ((gameSession.playerLives <= 0) && collision.CompareTag("SlimeEnemy"))
-        {
-            Debug.Log("maar gaya");
-            totoAnimator.SetTrigger("Dying");
-            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
-            // for going to the first level after death use this
-            gameSession.CheckPlayerLife(0);
-        }
-
-        
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
-        {
-            //DamageKnockBack(_dangerLayerDamageAmount);
-            TotoGotHit(_dangerLayerDamageAmount);
-            totoAnimator.SetTrigger("isHit");
-            AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
-            Debug.Log("Spike hits");
-        }
-
-        if ((gameSession.playerLives <= 0) && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
-        {
-            Debug.Log("Spikes se maar gaya");
-            totoAnimator.SetTrigger("Dying");
-            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
-            gameSession.CheckPlayerLife(0);
-        }
-    }
-
-
-    public void TotoGotHit(int damageAmount)
-    {
-        gameSession.CheckPlayerLife(damageAmount);
-    }
 
 
 }

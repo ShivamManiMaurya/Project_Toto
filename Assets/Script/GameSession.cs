@@ -67,7 +67,16 @@ public class GameSession : MonoBehaviour
     private void TakeLife(int damageAmount)
     {
         playerLives -= damageAmount;
-        _livesText.text = playerLives.ToString();
+
+        // This if else condition used because if playerLives is less than 0 then it shows on the screen
+        if (playerLives < 0)
+        {
+            _livesText.text = "0";
+        }
+        else
+        {
+            _livesText.text = playerLives.ToString();
+        }
     }
 
     public void GiveLife(int healthAmount)
