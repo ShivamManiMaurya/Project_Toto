@@ -8,6 +8,7 @@ TagManager:
   - SlimeEnemy
   - Health
   - CrabEnemy
+  - RatEnemy
   layers:
   - Default
   - TransparentFX

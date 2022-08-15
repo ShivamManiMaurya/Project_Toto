@@ -7,6 +7,9 @@ public class CrabEnemy : MonoBehaviour
     [SerializeField] float crabSpeed = 5f, health, maxHealth = 3f;
     [SerializeField] bool mustPetrol;
     [SerializeField] LayerMask platfromLayer;
+    [SerializeField] private int _crabKillPoints = 200;
+    [SerializeField] private AudioClip _crabHitSfx, _crabDeathSfx;
+
 
     private float crabScale;
     private bool mustTurn;
@@ -49,7 +52,15 @@ public class CrabEnemy : MonoBehaviour
         {
             Flip();
         }
-        crabRigidbody.velocity = new Vector2(crabSpeed * Time.fixedDeltaTime, crabRigidbody.velocity.y);
+
+        if (health > 0)
+        {
+            crabRigidbody.velocity = new Vector2(crabSpeed * Time.fixedDeltaTime, crabRigidbody.velocity.y);
+        }
+        else
+        {
+            crabRigidbody.velocity = new Vector2(0f, crabRigidbody.velocity.y);
+        }
     }
 
     void Flip()
@@ -73,10 +84,14 @@ public class CrabEnemy : MonoBehaviour
         health -= damageAmount;
 
         crabAnimator.SetTrigger("GotHit");
+        SoundManager.Instance.PlaySound(_crabHitSfx, 1f);
         Debug.Log("Crabhit");
 
         if (health <= 0)
         {
+            SoundManager.Instance.PlaySound(_crabDeathSfx, 1f);
+            FindObjectOfType<GameSession>().ScoreUpdater(_crabKillPoints);
+            crabAnimator.SetTrigger("Dying");
             Destroy(gameObject, 1f);
         }
         

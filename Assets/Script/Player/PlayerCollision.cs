@@ -8,7 +8,8 @@ public class PlayerCollision : MonoBehaviour
 
     [SerializeField] private int _dangerLayerDamageAmount = 1;
     [SerializeField] private int _slimeEnemyDamageAmount = 1;
-    [SerializeField] private int _crabEnemyDamageAmount = 2;
+    [SerializeField] private int _crabEnemyDamageAmount = 2, _ratEnemyDamageAmt = 1;
+
 
     CapsuleCollider2D totoBodyCollider;
     BoxCollider2D totoFeetCollider;
@@ -77,6 +78,24 @@ public class PlayerCollision : MonoBehaviour
         }
 
         if ((gameSession.playerLives <= 0) && collision.gameObject.CompareTag("CrabEnemy"))
+        {
+            Debug.Log("maar gaya");
+            totoAnimator.SetTrigger("Dying");
+            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
+            // for going to the first level after death use this
+            gameSession.CheckPlayerLife(0);
+        }
+
+        // for rat collision
+        if (collision.gameObject.CompareTag("RatEnemy") && (gameSession.playerLives > 0))
+        {
+            TotoGotHit(_ratEnemyDamageAmt);
+            totoAnimator.SetTrigger("isHit");
+            AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
+            Debug.Log("Chot lagi");
+        }
+
+        if ((gameSession.playerLives <= 0) && collision.gameObject.CompareTag("RatEnemy"))
         {
             Debug.Log("maar gaya");
             totoAnimator.SetTrigger("Dying");

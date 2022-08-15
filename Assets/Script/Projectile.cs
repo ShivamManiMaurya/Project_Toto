@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     PlayerMovement player;
     float projectileVelocity;
     CrabEnemy crabEnemy;
+    RatEnemy ratEnemy;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class Projectile : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>();
         projectileVelocity = player.transform.localScale.x * projectileSpeed;
         crabEnemy = FindObjectOfType<CrabEnemy>();
-        
+        ratEnemy = FindObjectOfType<RatEnemy>();
     }
 
     void Update()
@@ -39,9 +40,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("SlimeEnemy"))
         {
             FindObjectOfType<SlimeEnemyMovement>().slimeDeathAnimation();
-
             Destroy(collision.gameObject, 1f);
-            
             
             SoundManager.Instance.PlaySound(_slimeDeathSfx, _slimeDeathVol);
             FindObjectOfType<GameSession>().ScoreUpdater(_slimeKillPoints);
@@ -52,14 +51,16 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("CrabEnemy"))
         {
             crabEnemy.TakeDamage(1);
-            //Destroy(collision.gameObject);
-
             Destroy(gameObject);
-            //Debug.Log("Hitting crab");
+        }
+
+        if (collision.gameObject.CompareTag("RatEnemy"))
+        {
+            ratEnemy.TakeDamage(1);
+            Destroy(gameObject);
         }
 
         Invoke("DestroyProjectileHittingGround", 0.5f);
-
     }
 
     
