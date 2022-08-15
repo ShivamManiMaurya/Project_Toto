@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour
             //Destroy(collision.gameObject);
 
             Destroy(gameObject);
-            Debug.Log("Hitting crab");
+            //Debug.Log("Hitting crab");
         }
 
         Invoke("DestroyProjectileHittingGround", 0.5f);

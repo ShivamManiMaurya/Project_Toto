@@ -72,10 +72,14 @@ public class CrabEnemy : MonoBehaviour
     {
         health -= damageAmount;
 
+        crabAnimator.SetTrigger("GotHit");
+        Debug.Log("Crabhit");
+
         if (health <= 0)
         {
             Destroy(gameObject, 1f);
         }
+        
     }
 
 }

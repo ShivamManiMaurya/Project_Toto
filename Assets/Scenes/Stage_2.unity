@@ -5540,6 +5540,7 @@ GameObject:
   - component: {fileID: 1759932352}
   - component: {fileID: 1759932353}
   - component: {fileID: 1759932354}
+  - component: {fileID: 1759932355}
   m_Layer: 10
   m_Name: CrabEnemy
   m_TagString: CrabEnemy
@@ -5609,7 +5610,7 @@ SpriteRenderer:
   m_SortingLayerID: 1081455357
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1823610464, guid: fe7cdfa9381c2f14db227e325e936c30, type: 3}
+  m_Sprite: {fileID: 580141816, guid: fde6437a20d533141b55ec6c19e28731, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5628,7 +5629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759932348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.5, y: 1.624, z: 0}
+  m_LocalPosition: {x: -8.5, y: 1.473, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5649,11 +5650,11 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012415886, y: -0.5}
+  m_Offset: {x: -0.012415886, y: -0.41}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5625, y: 1.25}
+    oldSize: {x: 1.375, y: 0.9375}
     newSize: {x: 1.5625, y: 1.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5694,9 +5695,29 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.013802069, y: -0.13673247}
+  m_Offset: {x: -0.013802069, y: -0.07}
   m_Size: {x: 1.0129974, y: 0.5648882}
   m_Direction: 1
+--- !u!95 &1759932355
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759932348}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cdcf3b5b6f57d7241a29febba64b93d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1808261497
 GameObject:
   m_ObjectHideFlags: 0
@@ -15173,7 +15194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947083929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.907, y: -0.6, z: 0}
+  m_LocalPosition: {x: 0.907, y: -0.461, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

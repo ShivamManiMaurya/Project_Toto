@@ -153,13 +153,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (value.isPressed && !PauseMenu.GameIsPaused)
         {
-            Invoke("InstantiateProjectile", 0.5f);
+            //InstantiateProjectile();
             totoAnimator.SetTrigger("Attack");
         }
     }
 
 
-    private void InstantiateProjectile()
+    public void InstantiateProjectile()
     {
         Instantiate(projectile, catapultPosition.position, transform.rotation);
         SoundManager.Instance.PlaySound(_projectileShootSfx, _projectileShooteSfxVolume);
