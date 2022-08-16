@@ -8,7 +8,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] Animator transition;
     [SerializeField] private float _waitTime = 2f;
     [SerializeField] private AudioClip _uiButtonPressedClip, _buttonHover, _stageOneMusic;
-    
 
     public void PlayGame()
     {

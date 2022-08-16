@@ -13,7 +13,7 @@ public class RatEnemy : MonoBehaviour
 
     private int clipIndex;
     private float ratScale;
-    private bool mustTurn, audioPlaying = false;
+    private bool mustTurn;
 
     BoxCollider2D ratBoxCollider;
     Transform     ratTransform;
@@ -109,5 +109,7 @@ public class RatEnemy : MonoBehaviour
         }
 
     }
+
+
 
 }

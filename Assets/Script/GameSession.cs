@@ -92,6 +92,11 @@ public class GameSession : MonoBehaviour
     {
         playerScore += pointsScored;
         _scoreText.text = playerScore.ToString();
+
+        if (playerScore > PlayerPrefs.GetInt("highScore"))
+        {
+            PlayerPrefs.SetInt("highScore", playerScore);
+        }
     }
 
 
