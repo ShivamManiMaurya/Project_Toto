@@ -16,6 +16,9 @@ EditorBuildSettings:
     guid: 0b09057655ae5ed409e9e1f332c24ae7
   - enabled: 1
     path: Assets/Scenes/Stage_3.unity
+    guid: c872cf610e7f4da419acedcd0f61ed59
+  - enabled: 1
+    path: Assets/Scenes/Stage_BossBattle.unity
     guid: bf6aad0e9e2ec6d44b1b999ffebb275b
   - enabled: 1
     path: Assets/Scenes/You_Won.unity
