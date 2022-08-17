@@ -85,7 +85,6 @@ public class CrabEnemy : MonoBehaviour
 
         crabAnimator.SetTrigger("GotHit");
         SoundManager.Instance.PlaySound(_crabHitSfx, 1f);
-        Debug.Log("Crabhit");
 
         if (health <= 0)
         {

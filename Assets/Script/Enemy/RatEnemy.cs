@@ -47,7 +47,6 @@ public class RatEnemy : MonoBehaviour
             clipIndex = Random.Range(0, clips.Length - 1);
             audioSource.clip = clips[clipIndex];
             audioSource.PlayDelayed(Random.Range(1f, 10f));
-            Debug.Log("chu chu is playing");
         }
 
 
@@ -97,9 +96,6 @@ public class RatEnemy : MonoBehaviour
     {
         health -= damageAmount;
 
-        //SoundManager.Instance.PlaySound(_ratHitSfx, 1f);
-        Debug.Log("rathit");
-
         if (health <= 0)
         {
             SoundManager.Instance.PlaySound(_ratDeathSfx, 1f);
@@ -109,7 +105,5 @@ public class RatEnemy : MonoBehaviour
         }
 
     }
-
-
 
 }

@@ -16,6 +16,8 @@ public class PlayerCollision : MonoBehaviour
     Animator totoAnimator;
     GameSession gameSession;
 
+    public bool totoIsDead = false;
+
     private void Start()
     {
         totoBodyCollider = GetComponent<CapsuleCollider2D>();
@@ -29,18 +31,7 @@ public class PlayerCollision : MonoBehaviour
         if (collision.CompareTag("SlimeEnemy") && (gameSession.playerLives > 0))
         {
             TotoGotHit(_slimeEnemyDamageAmount);
-            totoAnimator.SetTrigger("isHit");
             AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
-            Debug.Log("Chot lagi");
-        }
-
-        if ((gameSession.playerLives <= 0) && collision.CompareTag("SlimeEnemy"))
-        {
-            Debug.Log("maar gaya");
-            totoAnimator.SetTrigger("Dying");
-            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
-            // for going to the first level after death use this
-            gameSession.CheckPlayerLife(0);
         }
 
     }
@@ -52,69 +43,41 @@ public class PlayerCollision : MonoBehaviour
         // for danger collision like spikes, lava etc
         if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
         {
-            //DamageKnockBack(_dangerLayerDamageAmount);
             TotoGotHit(_dangerLayerDamageAmount);
-            totoAnimator.SetTrigger("isHit");
             AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
-            Debug.Log("Spike hits");
         }
-
-        if ((gameSession.playerLives <= 0) && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
-        {
-            Debug.Log("Spikes se maar gaya");
-            totoAnimator.SetTrigger("Dying");
-            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
-            gameSession.CheckPlayerLife(0);
-        }
-
 
         // for crab collision
         if (collision.gameObject.CompareTag("CrabEnemy") && (gameSession.playerLives > 0))
         {
             TotoGotHit(_crabEnemyDamageAmount);
-            totoAnimator.SetTrigger("isHit");
             AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
-            Debug.Log("Chot lagi");
-        }
-
-        if ((gameSession.playerLives <= 0) && collision.gameObject.CompareTag("CrabEnemy"))
-        {
-            Debug.Log("maar gaya");
-            totoAnimator.SetTrigger("Dying");
-            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
-            // for going to the first level after death use this
-            gameSession.CheckPlayerLife(0);
         }
 
         // for rat collision
         if (collision.gameObject.CompareTag("RatEnemy") && (gameSession.playerLives > 0))
         {
             TotoGotHit(_ratEnemyDamageAmt);
-            totoAnimator.SetTrigger("isHit");
             AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
-            Debug.Log("Chot lagi");
         }
 
-        if ((gameSession.playerLives <= 0) && collision.gameObject.CompareTag("RatEnemy"))
-        {
-            Debug.Log("maar gaya");
-            totoAnimator.SetTrigger("Dying");
-            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
-            // for going to the first level after death use this
-            gameSession.CheckPlayerLife(0);
-        }
     }
-
 
 
     public void TotoGotHit(int damageAmount)
     {
         gameSession.CheckPlayerLife(damageAmount);
+        totoAnimator.SetTrigger("isHit");
+
+        if (gameSession.playerLives <= 0)
+        {
+            totoIsDead = true;
+            totoAnimator.SetTrigger("Dying");
+            AudioSource.PlayClipAtPoint(_playerDeathSfx, Camera.main.transform.position);
+            // for going to the game over scene after death use this
+            gameSession.CheckPlayerLife(0);
+        }
     }
-
-
-
-
 
 
 }

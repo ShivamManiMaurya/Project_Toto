@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     float projectileVelocity;
     CrabEnemy crabEnemy;
     RatEnemy ratEnemy;
+    BossHealth bossHealth;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class Projectile : MonoBehaviour
         projectileVelocity = player.transform.localScale.x * projectileSpeed;
         crabEnemy = FindObjectOfType<CrabEnemy>();
         ratEnemy = FindObjectOfType<RatEnemy>();
+        bossHealth = FindObjectOfType<BossHealth>();
     }
 
     void Update()
@@ -63,7 +65,14 @@ public class Projectile : MonoBehaviour
         Invoke("DestroyProjectileHittingGround", 0.5f);
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boss")) 
+        {
+            bossHealth.TakeDamage(1);
+            Destroy(gameObject);
+        }
+    }
 
     private void DestroyProjectileHittingGround()
     {

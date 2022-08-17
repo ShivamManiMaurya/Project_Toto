@@ -110,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
             && !PauseMenu.GameIsPaused) 
         {
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
-            //SoundManager.Instance.PlaySound(_jumpSfx, _jumpVolume);
             playerAudioSource.PlayOneShot(_jumpSfx, _jumpVolume);
         }
     }
@@ -153,7 +152,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (value.isPressed && !PauseMenu.GameIsPaused)
         {
-            //InstantiateProjectile();
             totoAnimator.SetTrigger("Attack");
         }
     }
