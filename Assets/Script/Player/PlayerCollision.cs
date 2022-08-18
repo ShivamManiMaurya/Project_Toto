@@ -61,6 +61,12 @@ public class PlayerCollision : MonoBehaviour
             AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
         }
 
+        if (collision.gameObject.CompareTag("Boss") && (gameSession.playerLives > 0))
+        {
+            TotoGotHit(_ratEnemyDamageAmt);
+            AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
+        }
+
     }
 
 

@@ -62,7 +62,13 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Invoke("DestroyProjectileHittingGround", 0.5f);
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+        }
+
+
+        DestroyProjectileHittingGround();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
