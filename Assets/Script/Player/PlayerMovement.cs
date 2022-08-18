@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
             if (value.isPressed && (gameSession.playerLives > 0) && totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")))
             {
                 totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
+                playerAudioSource.PlayOneShot(_jumpSfx, _jumpVolume);
             }
 
             return; 

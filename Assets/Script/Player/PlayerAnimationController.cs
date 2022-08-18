@@ -48,17 +48,20 @@ public class PlayerAnimationController : MonoBehaviour
         // Jumping Animation
         if (Mathf.Abs(totoRigidbody.velocity.y) > 0.8)
         {
+            ResumeAnimation();
             totoAnimator.SetBool("isJumping", true);
             totoAnimator.SetBool("isRunning", false);
         }
 
         if (totoRigidbody.velocity.y == 0)
         {
+            ResumeAnimation();
             totoAnimator.SetBool("isJumping", false);
         }
 
         if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
         {
+            ResumeAnimation();
             totoAnimator.SetBool("isJumping", false);
         }
 
@@ -66,15 +69,22 @@ public class PlayerAnimationController : MonoBehaviour
         if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && Mathf.Abs(totoRigidbody.velocity.y) > 0.8f
             && !totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")))
         {
+            ResumeAnimation();
             totoAnimator.SetBool("isClimbing", true);
             totoAnimator.SetBool("isJumping", false);
         }
-        else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0)
+        else if ((totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) && totoRigidbody.velocity.y == 0) ||
+                  !totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
+            ResumeAnimation();
             totoAnimator.SetBool("isClimbing", false);
         }
+        else if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) && totoRigidbody.velocity.y == 0f &&
+                !totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platform")) )
+        {
+            PauseClimbAnimation();
+        }
 
-        // Death Animation
 
         if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Bouncing")))
         {
@@ -82,6 +92,16 @@ public class PlayerAnimationController : MonoBehaviour
         }
 
 
+    }
+
+    public void PauseClimbAnimation()
+    {
+        totoAnimator.speed = 0;
+    }
+
+    public void ResumeAnimation()
+    {
+        totoAnimator.speed = 1;
     }
 
 
