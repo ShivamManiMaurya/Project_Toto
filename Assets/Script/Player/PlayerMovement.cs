@@ -113,6 +113,13 @@ public class PlayerMovement : MonoBehaviour
             totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
             playerAudioSource.PlayOneShot(_jumpSfx, _jumpVolume);
         }
+
+        if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Danger")) && (gameSession.playerLives > 0)
+            && !PauseMenu.GameIsPaused)
+        {
+            totoRigidbody.velocity = new Vector2(0f, totoJumpSpeed);
+            playerAudioSource.PlayOneShot(_jumpSfx, _jumpVolume);
+        }
     }
 
 
