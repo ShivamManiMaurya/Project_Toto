@@ -127,3 +127,5 @@ MonoBehaviour:
   _waitTime: 0.5
   _changeAudioTrack: {fileID: 8300000, guid: d6763650439365a4ea8e0f81329e792d, type: 3}
   _youWonMusic: {fileID: 8300000, guid: 90e7e09afe5d16f4d8e737c20169c437, type: 3}
+  _bossMusic: {fileID: 8300000, guid: 1fb3c0d5f33d2a147a39237c406f0c42, type: 3}
+  _levelFiveMusic: {fileID: 8300000, guid: 3ea5c4d9483b68f4face8b5952ba7865, type: 3}

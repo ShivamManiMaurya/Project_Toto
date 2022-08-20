@@ -864,10 +864,30 @@ MonoBehaviour:
   instruction:
     name: GameInstructions
     sentances:
-    - For moving right use 'D' for moving left use 'A'.
-    - For jumping use space bar and for throwing projectile use mouse left button
-    - Player starts with 5 lives and can get to atmost 9 lives
-    - Player starts with 5 lives and can get to atmost 9 lives dsdadadsa
+    - "\nMovement - \n\t'A' -- Move Left\n\t'S' -- Move Right\n\t'w' -- Climb Up\n\t'S'
+      -- Climb Down"
+    - "\nOther Keys - \n\t'Space' -- Jump\n\t'Left mouse button' -- Shoot\n\t'Escape'
+      -- Pause and Resume"
+    - "\t           \n\t         Lives Information\n\n    Player starts with 3 Lives
+      and in further     progression player can get maximum 9 Lives."
+    - "Story - \n\tToto wanted to be a worrier but being a Hobbit(i.e. of small size)
+      no one wanted to take him seriously and train him, so he trained himself, and
+      one day the king's daughter Ela got kidnapped by -- \n"
+    - "Story Continue- \n\t-- the One-Eyed Wizard and his team of the swampy forest
+      because they wanted to teach a lesson to the king for not granting their demands.\r\n\t\n\n"
+    - "Story Continue- \n\tThey(i.e. the kidnappers) take Ela to the swampy forest
+      where a One-Eyed Wizard lives and only small creatures can go into that forest
+      (why only small creatures because the forest is home to small animals so no
+      other who is of bigger size can trespass to the swampy forest -- \n\n"
+    - "Story Continue- \n\t--  due to the magic of the One-Eyed wizard) and their
+      Toto said I could go their and I\u2019m small so I can easily pass through
+      that magic path. Then everyone laughs at him but they don\u2019t have any choice
+      so they send him.. And there the journey starts for Toto.\r\n\n"
+    - '
+
+
+      Instructions and Story End Please press the Cross Button on the Right
+      to Play the Game.'
 --- !u!212 &1110732537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15931,11 +15951,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1687935959288447117, guid: 0e39d4a0dc98181449ba449d14b1daee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.9
+      value: -15.26
       objectReference: {fileID: 0}
     - target: {fileID: 1687935959288447117, guid: 0e39d4a0dc98181449ba449d14b1daee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.97
+      value: -3.63
       objectReference: {fileID: 0}
     - target: {fileID: 1687935959288447117, guid: 0e39d4a0dc98181449ba449d14b1daee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15988,11 +16008,11 @@ PrefabInstance:
       objectReference: {fileID: 1808261501}
     - target: {fileID: 2650558044496827867, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.43984
+      value: -14.799841
       objectReference: {fileID: 0}
     - target: {fileID: 2650558044496827867, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.139996
+      value: -3.7999964
       objectReference: {fileID: 0}
     - target: {fileID: 2650558044909482568, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_BoundingShape2D
@@ -16000,11 +16020,11 @@ PrefabInstance:
       objectReference: {fileID: 1808261501}
     - target: {fileID: 2650558044909482569, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.43984
+      value: -14.799841
       objectReference: {fileID: 0}
     - target: {fileID: 2650558044909482569, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.139996
+      value: -3.7999964
       objectReference: {fileID: 0}
     - target: {fileID: 2650558044909482571, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_Follow
@@ -16012,19 +16032,19 @@ PrefabInstance:
       objectReference: {fileID: 117385008}
     - target: {fileID: 2650558045268423045, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.697074
+      value: -8.786069
       objectReference: {fileID: 0}
     - target: {fileID: 2650558045268423045, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.150956
+      value: -3.8086462
       objectReference: {fileID: 0}
     - target: {fileID: 2650558045323282234, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.43984
+      value: -14.799841
       objectReference: {fileID: 0}
     - target: {fileID: 2650558045323282234, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.139996
+      value: -3.7999964
       objectReference: {fileID: 0}
     - target: {fileID: 2650558045323282244, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_Follow
@@ -16036,11 +16056,11 @@ PrefabInstance:
       objectReference: {fileID: 1808261501}
     - target: {fileID: 2650558045557821168, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.43984
+      value: -14.799841
       objectReference: {fileID: 0}
     - target: {fileID: 2650558045557821168, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.139996
+      value: -3.7999964
       objectReference: {fileID: 0}
     - target: {fileID: 2650558045557821170, guid: 947fba5444823e14da14e1539732b9ca, type: 3}
       propertyPath: m_Follow
