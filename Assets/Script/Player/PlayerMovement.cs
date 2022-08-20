@@ -54,12 +54,6 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    // Player got Damage
-    public void DamageKnockBack(int damageAmount)
-    {
-        HeartsHealthVisual.heartsHealthSystemStatic.Damage(damageAmount);
-    }
-
 
     // Movement Part
     void OnMove(InputValue value)
