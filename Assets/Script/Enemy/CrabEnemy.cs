@@ -10,7 +10,6 @@ public class CrabEnemy : MonoBehaviour
     [SerializeField] private int _crabKillPoints = 200;
     [SerializeField] private AudioClip _crabHitSfx, _crabDeathSfx;
 
-
     private float crabScale;
     private bool mustTurn;
 
@@ -39,6 +38,7 @@ public class CrabEnemy : MonoBehaviour
             Patrol();
     }
 
+    // For handling the physics better FixedUpdate() is used
     private void FixedUpdate()
     {
         if (mustPetrol)
@@ -78,7 +78,7 @@ public class CrabEnemy : MonoBehaviour
         }
     }
 
-
+    // Crab Got hit
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;

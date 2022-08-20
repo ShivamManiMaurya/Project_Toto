@@ -5,11 +5,9 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] private AudioClip _playerHitSfx, _playerDeathSfx;
-
     [SerializeField] private int _dangerLayerDamageAmount = 1;
     [SerializeField] private int _slimeEnemyDamageAmount = 1;
     [SerializeField] private int _crabEnemyDamageAmount = 2, _ratEnemyDamageAmt = 1;
-
 
     CapsuleCollider2D totoBodyCollider;
     BoxCollider2D totoFeetCollider;
@@ -28,6 +26,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // for slime trigger
         if (collision.CompareTag("SlimeEnemy") && (gameSession.playerLives > 0))
         {
             TotoGotHit(_slimeEnemyDamageAmount);
@@ -35,7 +34,6 @@ public class PlayerCollision : MonoBehaviour
         }
 
     }
-
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -61,6 +59,7 @@ public class PlayerCollision : MonoBehaviour
             AudioSource.PlayClipAtPoint(_playerHitSfx, Camera.main.transform.position);
         }
 
+        // for Boss collision
         if (collision.gameObject.CompareTag("Boss") && (gameSession.playerLives > 0))
         {
             TotoGotHit(_ratEnemyDamageAmt);

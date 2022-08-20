@@ -11,8 +11,6 @@ public class PlayerAnimationController : MonoBehaviour
     Animator totoAnimator;
     BoxCollider2D totoFeetCollider;
     AudioSource playerAudioSource;
-    
-
 
     void Start()
     {
@@ -85,7 +83,7 @@ public class PlayerAnimationController : MonoBehaviour
             PauseClimbAnimation();
         }
 
-
+        // Bounce Music Played
         if (totoFeetCollider.IsTouchingLayers(LayerMask.GetMask("Bouncing")))
         {
             playerAudioSource.PlayOneShot(_bounceSfx, _bounceSfxVolume);
@@ -94,11 +92,13 @@ public class PlayerAnimationController : MonoBehaviour
 
     }
 
+    // This function is used for stopping the climb animation
     public void PauseClimbAnimation()
     {
         totoAnimator.speed = 0;
     }
 
+    // Due to PauseClimbAnimation function all the animations got paused this function is used to resume the animation
     public void ResumeAnimation()
     {
         totoAnimator.speed = 1;

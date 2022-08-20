@@ -8,11 +8,13 @@ public class Boss_SoundEffects : MonoBehaviour
 
     AudioSource audioSource;
 
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
+    // These all sound functions are played from the different animation events
     public void PlayArrivalSfx()
     {
         audioSource.PlayOneShot(_arrivalSfx); 

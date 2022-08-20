@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// This is from the tuotorial of Brackeys "How to make a BOSS in Unity!" from youtube
 public class BossHealth : MonoBehaviour
 {
 	public int health = 10;
@@ -30,20 +32,13 @@ public class BossHealth : MonoBehaviour
 
 		if (health <= 0)
 		{
-			//Die();
 			Debug.Log("Boss Died");
 			bossIsDead = true;
-			//bossAnimaotor.SetTrigger("Dying");
-			
 			StartCoroutine(BossDeath());
 		}
 	}
 
-	//void Die()
-	//{
-	//	Instantiate(deathEffect, transform.position, Quaternion.identity);
-	//	Destroy(gameObject);
-	//}
+	// My Changes
 	IEnumerator BossDeath()
     {
 		yield return new WaitForSecondsRealtime(2f);

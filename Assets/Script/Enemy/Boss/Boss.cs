@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is from the tuotorial of Brackeys "How to make a BOSS in Unity!" from youtube
 public class Boss : MonoBehaviour
 {
 	public Transform player;
-
 	public bool isFlipped = false;
 
 	public void LookAtPlayer()

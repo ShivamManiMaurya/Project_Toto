@@ -37,6 +37,8 @@ public class Projectile : MonoBehaviour
         projectileRigidbody.velocity = new Vector2(projectileVelocity, projectileRigidbody.velocity.y);
     }
 
+
+    // Different actions of projectile when it hits different things
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("SlimeEnemy"))
@@ -66,7 +68,6 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
 
         DestroyProjectileHittingGround();
     }
